@@ -8,7 +8,6 @@
   },
   "author": "JunBeum-Cho",
   "license": "MIT",
-  "type": "module",
   "dependencies": {
     "@types/node": "^14.0.26",
     "@types/node-telegram-bot-api": "^0.50.4",
