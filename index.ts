@@ -25,6 +25,7 @@ const telegram_msg = (text: string) => {
 
 async function main() {
   try{
+    telegram_msg(`*프로그램 ON*`)
     while(true) {
       await data()
       await sleep(10000)
@@ -63,7 +64,6 @@ async function data()  {
       }
       await sleep(250)
     }
-    throw new Error("시험")
 }
 
 function check(coin: any, interval: number) {
