@@ -36,6 +36,7 @@ export default async function main(status: any) {
     telegram_msg(`*에러발생*\n${e}`)
     status["running"] = false
     status["lasterrortime"] = new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})
+    await sleep(10000)
     main(history)
   }
 }

@@ -27,3 +27,7 @@ app.get("/start",  function(req, res) {
         res.send("already running")
     }
 })
+
+app.get("/stop", function(req, res) {
+    process.exit(0)
+})
