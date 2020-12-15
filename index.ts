@@ -11,9 +11,9 @@ app.use(express.static(path.join(__dirname, "/")))
 app.use(express.json())
 
 let status = {
-    running: true,
-    history: [],
-    lasterrortime: ""
+    running: false,
+    lasterrortime: "",
+    history: []
 }
 app.get("/", function(req, res) {
     res.status(200).send(status)
@@ -22,6 +22,8 @@ app.get("/", function(req, res) {
 app.get("/start",  function(req, res) {
     if(!status.running) {
         main(status)
+        res.send("successfully started")
+    } else {
+        res.send("already running")
     }
-    res.send("successfully started")
 })
