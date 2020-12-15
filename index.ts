@@ -3,8 +3,8 @@ import path from "path"
 import main from "./upbit"
 
 let app = express();
-app.listen(8000, function () {
-  console.log("Express server has started on port 8000");
+app.listen(8080, function () {
+  console.log("Express server has started on port 8080");
 });
 
 app.use(express.static(path.join(__dirname, "/")))
