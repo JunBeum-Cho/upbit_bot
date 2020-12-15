@@ -29,13 +29,13 @@ export default async function main(status: any) {
     while(true) {
       status["running"] = true
       await data()
-      status["history"].unshift(new Date().toLocaleString())
+      status["history"].unshift(new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"}))
       await sleep(10000)
     }
   } catch (e) {
     telegram_msg(`*에러발생*\n${e}`)
     status["running"] = false
-    status["lasterrortime"] = new Date().toLocaleString()
+    status["lasterrortime"] = new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})
     main(history)
   }
 }
