@@ -71,9 +71,17 @@ async function data()  {
       let threeMinChg = ((minutes_3[1]?.trade_price / minutes_3[1]?.opening_price) - 1) * 100
       let fiveMinChg = ((minutes_5[1]?.trade_price / minutes_5[1]?.opening_price) - 1) * 100
       if (threeMinChg > threeMinPumping_boundary) {
-        if (check_pump(coin, 180)) {telegram_msg(`${minutes_3[1]?.market}가 최근 3분동안 ${threeMinChg.toFixed(2)}%만큼 급등중`)}
+        if (check_pump(coin, 180)) {
+          telegram_msg(`${minutes_3[1]?.market}가 최근 3분동안 ${threeMinChg.toFixed(2)}%만큼 급등중`)
+          let notice_req = (await Axios.get("https://api-manager.upbit.com/api/v1/notices?page=1&per_page=20")).data
+          telegram_msg(`현재공지:\n\n${notice_req.data.list[0].title}\n\n${notice_req.data.list[1].title}\n\n${notice_req.data.list[2].title}`)
+        }
       } else if (fiveMinChg > fiveMinPumping_boundary) {
-        if (check_pump(coin, 300)) {telegram_msg(`${minutes_5[1]?.market}가 최근 5분동안 ${fiveMinChg.toFixed(2)}%만큼 급등중`)}
+        if (check_pump(coin, 300)) {
+          telegram_msg(`${minutes_5[1]?.market}가 최근 5분동안 ${fiveMinChg.toFixed(2)}%만큼 급등중`)
+          let notice_req = (await Axios.get("https://api-manager.upbit.com/api/v1/notices?page=1&per_page=20")).data
+          telegram_msg(`현재공지:\n\n${notice_req.data.list[0].title}\n\n${notice_req.data.list[1].title}\n\n${notice_req.data.list[2].title}`)
+        }
       }
       await sleep(250)
     }
