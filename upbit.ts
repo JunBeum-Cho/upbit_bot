@@ -1,29 +1,35 @@
 import Axios from "axios"
-import TelegramBot from "node-telegram-bot-api"
+// import TelegramBot from "node-telegram-bot-api"
 import Redis from "redis"
 
 const alt_boundary = 40
-const bitcoin_boundary = 4
-const majorcoin_boundary = 8
+const bitcoin_boundary = 3
+const majorcoin_boundary = 5
 const majorcoin_list = ["KRW-XRP", "KRW-ETH", "KRW-BSV", "KRW-ADA", "KRW-XLM", "KRW-BCH", "KRW-TRX"]
 const threeMinPumping_boundary = 7
 const fiveMinPumping_boundary = 10
 
 const token= '1136799268:AAEAHJKs1ZWH_lqmRtRWdMDB_l0Vetq5a_E'
-const bot = new TelegramBot(token)
+// const bot = new TelegramBot(token)
 const chatId = "@letsgetittt";
+const chatIdINT = '-1001202777995'
 let history = {}
 
 const redis_storage = Redis.createClient()
 
-const sleep = (ms) => {
+const sleep = (ms: number) => {
   return new Promise(resolve=>{
       setTimeout(resolve,ms)
   })
 }
 
-const telegram_msg = (text: string) => {
-  bot.sendMessage(chatId, text);
+// const telegram_msg = (text: string) => {
+//   bot.sendMessage(chatId, text);
+// }
+
+const telegram_msg = async (text: string) => {
+  await Axios.get(`https://api.telegram.org/bot${token}/sendmessage?chat_id=${chatIdINT}&text=${text}`)
+  await sleep(500)
 }
 
 process.on('SIGINT', () => {
@@ -32,7 +38,7 @@ process.on('SIGINT', () => {
 })
 
 export default async function main() {
-  telegram_msg(`*프로그램 ON*`)
+  // telegram_msg(`*프로그램 ON*`)
   try{
     while(true) {
       redis_storage.set("status", "running")
@@ -114,3 +120,4 @@ function check_pump(coin: any, interval: number) {
 }
 
 main()
+
