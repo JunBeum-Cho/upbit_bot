@@ -28,7 +28,7 @@ const sleep = (ms: number) => {
 // }
 
 const telegram_msg = async (text: string) => {
-  await Axios.get(`https://api.telegram.org/bot${token}/sendmessage?chat_id=${chatIdINT}&text=${text}`)
+  await Axios.get(`https://api.telegram.org/bot${token}/sendmessage?chat_id=${chatIdINT}&text=${encodeURIComponent(text)}`)
   await sleep(500)
 }
 
@@ -38,7 +38,7 @@ process.on('SIGINT', () => {
 })
 
 export default async function main() {
-  // telegram_msg(`*프로그램 ON*`)
+  telegram_msg(`*프로그램 ON*`)
   try{
     while(true) {
       redis_storage.set("status", "running")
