@@ -37,7 +37,7 @@ export default async function main() {
     while(true) {
       redis_storage.set("status", "running")
       await data()
-      redis_storage.lpush("history", `${new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})}`)
+      redis_storage.lpush("history", ` ${new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})}`)
       await sleep(10000)
     }
   } catch (e) {

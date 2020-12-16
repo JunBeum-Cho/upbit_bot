@@ -60,60 +60,37 @@ app.get("/stop", function(req, res) {
     res.send("succesfully stopped")
 })
 
-app.get("/set/:testkey/:testvalue", function(req, res) {
-    let key=req.params.testkey
-    let value=req.params.testvalue
-    redis_storage.set(key, value)
-    res.send(`succesfully set ${key}:${value}`)
-})
-
-// app.get("/test2/:testkey", function(req, res) {
-//     let key=req.params.testkey
-//     redis_storage.get(key, (err, reply) => {
-//         if(!err) {
-//             res.send(`requested key: ${key} and corresponding value: ${reply}`)
-//         } else {
-//             res.send(`error: ${err}`)
-//         }
-//     })
-// })
-
-app.get("/allinfo", function(req, res) {
-    redis_storage.KEYS("*", (err,reply) => {
-        res.send(reply)
-    })
-})
-
-app.get("/size", function(req, res) {
-    redis_storage.DBSIZE((err,reply) => {
-        if(err) {
-            res.send(err)
-        } else {
-            res.send(`${reply}`)
-        }
-    })
-})
-
-// app.get("/add/:value", function(req, res) {
-//     let add = req.params.value
-//     redis_storage.lpush("testti", add, (err, reply) => {
-//       if(!err) {
-//         res.send(`${reply}`)
-//       } else {
-//         res.send(`${err}`)
-//       }
-//     })
-    
-// })
-
 app.get("/get/:key", function(req, res) {
   redis_storage.get(req.params.key, (err, reply)=>{
     res.send(`${reply}`)
+  })
 })
+
+app.get("/set/:testkey/:testvalue", function(req, res) {
+  let key=req.params.testkey
+  let value=req.params.testvalue
+  redis_storage.set(key, value)
+  res.send(`succesfully set ${key}:${value}`)
 })
+
 app.get("/del/:key", function(req, res) {
   redis_storage.del(req.params.key, (err, reply)=>{
       res.send(`${reply}`)
   })
 })
 
+app.get("/getallinfo", function(req, res) {
+  redis_storage.KEYS("*", (err,reply) => {
+      res.send(reply)
+  })
+})
+
+app.get("/size", function(req, res) {
+  redis_storage.DBSIZE((err,reply) => {
+      if(err) {
+          res.send(err)
+      } else {
+          res.send(`${reply}`)
+      }
+  })
+})
