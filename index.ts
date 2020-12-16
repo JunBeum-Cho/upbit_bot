@@ -29,9 +29,9 @@ app.get("/status", function(req, res) {
     try{
       redis_storage.get("status", (err, status_reply) => {
         status = status_reply
-        redis_storage.get("status", (err, last_error_reply) => {
+        redis_storage.get("last_error", (err, last_error_reply) => {
           last_error = last_error_reply
-          redis_storage.lrange("testti", 0, 10, (err, history_reply) => {
+          redis_storage.lrange("history", 0, 10, (err, history_reply) => {
             history = history_reply
             res.send(`STATUS: ${status}\nLAST ERROR: ${last_error}\nHISTORY: ${history}`)
           })
