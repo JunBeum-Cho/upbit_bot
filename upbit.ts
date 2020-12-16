@@ -34,6 +34,7 @@ const telegram_msg = async (text: string) => {
 
 process.on('SIGINT', () => {
   console.log("kill command received")
+  redis_storage.set("status", "stopped")
   process.exit(2);
 })
 
