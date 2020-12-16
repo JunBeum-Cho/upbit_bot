@@ -1,9 +1,7 @@
 import express from "express";
 import path from "path"
-import main from "./upbit"
 import Redis from "redis"
 import cp from "child_process"
-import { findConfigFile } from "typescript";
 
 const redis_storage = Redis.createClient() // For mac rdb saved in /usr/local/var/db/redis
 let app = express();
