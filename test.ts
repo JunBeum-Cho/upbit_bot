@@ -6,8 +6,8 @@ const sleep = (ms) => {
   }
 
 async function x() {
-    let con = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit', shell: true})
-    await sleep(35000)
+    let con = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
+    await sleep(15000)
     con.kill('SIGINT')
 }   
   

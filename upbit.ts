@@ -27,7 +27,7 @@ const telegram_msg = (text: string) => {
 }
 
 process.on('SIGINT', () => {
-  console.log("commnet received")
+  console.log("kill command received")
   process.exit(2);
 })
 

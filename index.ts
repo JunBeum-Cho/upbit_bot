@@ -21,7 +21,6 @@ app.get("/", function(req, res) {
     if(reply === "running") {
       res.send("server is RUNNING")
     } else {
-      upbit_process = cp.spawn("npx ts-node upbit.ts")
       res.send("server is STOPPED")
     }
   })
@@ -51,7 +50,7 @@ app.get("/start",  function(req, res) {
     if(reply === "running") {
       res.send("already running")
     } else {
-      upbit_process = cp.spawn("npx ts-node upbit.ts")
+      upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
       res.send("successfully started")
     }
   })
