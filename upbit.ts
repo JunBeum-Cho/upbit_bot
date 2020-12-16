@@ -26,23 +26,45 @@ const telegram_msg = (text: string) => {
   bot.sendMessage(chatId, text);
 }
 
+process.on('SIGINT', () => {
+  console.log("commnet received")
+  process.exit(2);
+})
+
 export default async function main() {
-  telegram_msg(`*프로그램 ON*`)
-  try{
-    while(true) {
-      redis_storage.set("status", "running")
-      await data()
-      redis_storage.lpush("history", `${new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})}`)
-      await sleep(10000)
-    }
-  } catch (e) {
-    telegram_msg(`*에러발생*\n${e}`)
-    redis_storage.set("status", "stopped")
-    redis_storage.set("last_errortime", new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"}))
+  let status, last_error, history
+  while(true) {
+    redis_storage.get("status", (err, reply) => {
+      status = reply
+      redis_storage.get("status", (err, reply) => {
+        last_error = reply
+        redis_storage.lrange("testti", 0, 10, (err, reply) => {
+          history = reply
+          console.log(`${new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})}`)
+        })
+      })
+    })
     await sleep(10000)
-    main()
   }
 }
+
+// export default async function main() {
+//   telegram_msg(`*프로그램 ON*`)
+//   try{
+//     while(true) {
+//       redis_storage.set("status", "running")
+//       await data()
+//       redis_storage.lpush("history", `${new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})}`)
+//       await sleep(10000)
+//     }
+//   } catch (e) {
+//     telegram_msg(`*에러발생*\n${e}`)
+//     redis_storage.set("status", "stopped")
+//     redis_storage.set("last_error", new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"}))
+//     await sleep(10000)
+//     main()
+//   }
+// }
 
 async function data()  {
     let coinList: {"market": string, "korean_name": string, "english_name": string}[] = (await Axios.get("https://api.upbit.com/v1/market/all")).data

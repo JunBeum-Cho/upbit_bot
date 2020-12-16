@@ -16,53 +16,70 @@ app.listen(8080, function () {
 app.use(express.static(path.join(__dirname, "/")))
 app.use(express.json())
 
-let status = {
-    running: false,
-    lasterrortime: "",
-    history: []
-}
-
 app.get("/", function(req, res) {
-    
-    res.status(200).send("server is RUNNING")
+  redis_storage.get("status", (err, reply) => {
+    if(reply === "running") {
+      res.send("server is RUNNING")
+    } else {
+      upbit_process = cp.spawn("npx ts-node upbit.ts")
+      res.send("server is STOPPED")
+    }
+  })
 })
 
 app.get("/status", function(req, res) {
-    res.status(200).send(status)
+    let status, last_error, history
+    try{
+      redis_storage.get("status", (err, reply) => {
+        status = reply
+        redis_storage.get("status", (err, reply) => {
+          last_error = reply
+          redis_storage.lrange("testti", 0, 10, (err, reply) => {
+            history = reply
+            res.send(`STATUS: ${status}\nLAST ERROR: ${last_error}\nHISTORY: ${history}`)
+          })
+        })
+      })
+    } catch (err) {
+      res.send(`ERROR: ${err}`)
+    }
 })
 
 
 app.get("/start",  function(req, res) {
-    if(!status.running) {
-        upbit_process = cp.spawn("npx ts-node upbit.ts")
-        res.send("successfully started")
+  redis_storage.get("status", (err, reply) => {
+    if(reply === "running") {
+      res.send("already running")
     } else {
-        res.send("already running")
+      upbit_process = cp.spawn("npx ts-node upbit.ts")
+      res.send("successfully started")
     }
+  })
 })
 
 app.get("/stop", function(req, res) {
     upbit_process.kill('SIGINT')
+    redis_storage.set("status", "stopped")
     res.send("succesfully stopped")
 })
 
-app.get("/test1/:testkey/:testvalue", function(req, res) {
+app.get("/set/:testkey/:testvalue", function(req, res) {
     let key=req.params.testkey
     let value=req.params.testvalue
     redis_storage.set(key, value)
     res.send(`succesfully set ${key}:${value}`)
 })
 
-app.get("/test2/:testkey", function(req, res) {
-    let key=req.params.testkey
-    redis_storage.get(key, (err, reply) => {
-        if(!err) {
-            res.send(`requested key: ${key} and corresponding value: ${reply}`)
-        } else {
-            res.send(`error: ${err}`)
-        }
-    })
-})
+// app.get("/test2/:testkey", function(req, res) {
+//     let key=req.params.testkey
+//     redis_storage.get(key, (err, reply) => {
+//         if(!err) {
+//             res.send(`requested key: ${key} and corresponding value: ${reply}`)
+//         } else {
+//             res.send(`error: ${err}`)
+//         }
+//     })
+// })
 
 app.get("/allinfo", function(req, res) {
     redis_storage.KEYS("*", (err,reply) => {
@@ -80,9 +97,26 @@ app.get("/size", function(req, res) {
     })
 })
 
-app.get("/test", function(req, res) {
-    redis_storage.lpush("testti", "a", "b", "c")
-    redis_storage.lrange("testti", 0, 1, (err, reply)=>{
-        res.send(reply)
-    })
+// app.get("/add/:value", function(req, res) {
+//     let add = req.params.value
+//     redis_storage.lpush("testti", add, (err, reply) => {
+//       if(!err) {
+//         res.send(`${reply}`)
+//       } else {
+//         res.send(`${err}`)
+//       }
+//     })
+    
+// })
+
+app.get("/get/:key", function(req, res) {
+  redis_storage.get(req.params.key, (err, reply)=>{
+    res.send(`${reply}`)
 })
+})
+app.get("/del/:key", function(req, res) {
+  redis_storage.del(req.params.key, (err, reply)=>{
+      res.send(`${reply}`)
+  })
+})
+
