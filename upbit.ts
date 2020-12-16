@@ -1,5 +1,6 @@
 import Axios from "axios"
 import TelegramBot from "node-telegram-bot-api"
+import Redis from "redis"
 
 const alt_boundary = 40
 const bitcoin_boundary = 4
@@ -13,6 +14,8 @@ const bot = new TelegramBot(token)
 const chatId = "@letsgetittt";
 let history = {}
 
+const redis_storage = Redis.createClient()
+
 const sleep = (ms) => {
   return new Promise(resolve=>{
       setTimeout(resolve,ms)
@@ -23,21 +26,21 @@ const telegram_msg = (text: string) => {
   bot.sendMessage(chatId, text);
 }
 
-export default async function main(status: any) {
+export default async function main() {
   telegram_msg(`*프로그램 ON*`)
   try{
     while(true) {
-      status["running"] = true
+      redis_storage.set("status", "running")
       await data()
-      status["history"].unshift(new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"}))
+      redis_storage.lpush("history", `${new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})}`)
       await sleep(10000)
     }
   } catch (e) {
     telegram_msg(`*에러발생*\n${e}`)
-    status["running"] = false
-    status["lasterrortime"] = new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})
+    redis_storage.set("status", "stopped")
+    redis_storage.set("last_errortime", new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"}))
     await sleep(10000)
-    main(history)
+    main()
   }
 }
 
@@ -83,3 +86,5 @@ function check(coin: any, interval: number) {
     return false
   }
 }
+
+main()
