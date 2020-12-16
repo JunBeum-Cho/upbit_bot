@@ -57,11 +57,11 @@ async function data()  {
     for (let coin of currmarket_data) {
       let dayChg = coin?.change_rate * 100
       if(coin?.market === "KRW-BTC" && coin?.change === 'RISE' && dayChg > bitcoin_boundary) {
-        if (check(coin, 1800)) {telegram_msg(`${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`)}
+        if (check_normal(coin, 1800, dayChg.toFixed(2))) {telegram_msg(`${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`)}
       } else if(majorcoin_list.includes(coin?.market) && coin?.change === 'RISE' && dayChg > majorcoin_boundary) {
-        if (check(coin, 1800)) {telegram_msg(`${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`)}
+        if (check_normal(coin, 1800, dayChg.toFixed(2))) {telegram_msg(`${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`)}
       } else if(coin?.change === 'RISE' && dayChg> alt_boundary) {
-        if (check(coin, 1800)) {telegram_msg(`${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`)}
+        if (check_normal(coin, 900, dayChg.toFixed(2), true)) {telegram_msg(`${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`)}
       }
     }
 
@@ -71,15 +71,36 @@ async function data()  {
       let threeMinChg = ((minutes_3[1]?.trade_price / minutes_3[1]?.opening_price) - 1) * 100
       let fiveMinChg = ((minutes_5[1]?.trade_price / minutes_5[1]?.opening_price) - 1) * 100
       if (threeMinChg > threeMinPumping_boundary) {
-        if (check(coin, 180)) {telegram_msg(`${minutes_3[1]?.market}가 최근 3분동안 ${threeMinChg.toFixed(2)}%만큼 급등중`)}
+        if (check_pump(coin, 180)) {telegram_msg(`${minutes_3[1]?.market}가 최근 3분동안 ${threeMinChg.toFixed(2)}%만큼 급등중`)}
       } else if (fiveMinChg > fiveMinPumping_boundary) {
-        if (check(coin, 300)) {telegram_msg(`${minutes_5[1]?.market}가 최근 5분동안 ${fiveMinChg.toFixed(2)}%만큼 급등중`)}
+        if (check_pump(coin, 300)) {telegram_msg(`${minutes_5[1]?.market}가 최근 5분동안 ${fiveMinChg.toFixed(2)}%만큼 급등중`)}
       }
       await sleep(250)
     }
 }
 
-function check(coin: any, interval: number) {
+function check_normal(coin: any, interval: number, dayChg: String, filter: boolean = false) {
+  let currTime = new Date()
+  if(!history[coin?.market]) {
+    history[coin?.market] = {currTime: currTime, dayChg: dayChg}
+    return true
+  } else if (history[coin?.market] && (currTime.getTime() - history[coin?.market].currTime.getTime())/1000 > interval) {
+    if(filter) {
+      if (Number(dayChg) - Number(history[coin?.market].dayChg) > 10) {
+        history[coin?.market] = {currTime: currTime, dayChg: dayChg}
+        return true
+      } else
+      return false
+    } else {
+      history[coin?.market] = {currTime: currTime, dayChg: dayChg}
+      return true
+    }
+  } else {
+    return false
+  }
+}
+
+function check_pump(coin: any, interval: number) {
   let currTime = new Date()
   if(!history[coin?.market]) {
     history[coin?.market] = currTime
