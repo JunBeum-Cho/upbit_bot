@@ -8,7 +8,7 @@ let app = express();
 let upbit_process: any
 
 app.listen(8080, function () {
-  console.log("Express server has started on port 80");
+  console.log("Express server has started on port 8080");
 });
 
 app.use(express.static(path.join(__dirname, "/")))
