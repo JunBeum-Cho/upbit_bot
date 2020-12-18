@@ -94,3 +94,9 @@ app.get("/size", function(req, res) {
       }
   })
 })
+
+app.get("/clear", function(req, res) {
+  redis_storage.del("status", "last_error", "history", (err, reply)=>{
+    res.send(`RESET DB`)
+  })
+})
