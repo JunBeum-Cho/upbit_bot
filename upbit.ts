@@ -39,9 +39,11 @@ process.on('SIGINT', () => {
 })
 
 export default async function main() {
+  console.log("running111")
   telegram_msg(`*프로그램 ON*`)
   try{
     while(true) {
+      console.log("running222")
       redis_storage.set("status", "running")
       await data()
       redis_storage.lpush("history", ` ${new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})}`)
