@@ -7,7 +7,7 @@ const redis_storage = Redis.createClient() // For mac rdb saved in /usr/local/va
 let app = express();
 let upbit_process: any
 
-app.listen(80, function () {
+app.listen(8080, function () {
   console.log("Express server has started on port 80");
 });
 
