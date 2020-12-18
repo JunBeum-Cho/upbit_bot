@@ -48,10 +48,10 @@ export default async function main() {
       await sleep(10000)
     }
   } catch (e) {
+    await sleep(10000)
     telegram_msg(`*에러발생*\n${e}`)
     redis_storage.set("status", "stopped")
     redis_storage.set("last_error", new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"}))
-    await sleep(10000)
     main()
   }
 }
@@ -90,7 +90,7 @@ async function data()  {
           telegram_msg(`현재공지:\n\n1. ${notice_req.data.list[0].title}\n\n2. ${notice_req.data.list[1].title}\n\n3. ${notice_req.data.list[2].title}`)
         }
       }
-      await sleep(250)
+      await sleep(300)
     }
 }
 
