@@ -4,12 +4,12 @@
   "description": "upbit 시세 조회 및 알림 봇",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc && pm2 start dist/index.js",
+    "start": "npx tsc && sudo pm2 start dist/index.js",
     "dev": "npx ts-node index.ts"
   },
   "author": "JunBeum-Cho",
   "license": "MIT",
-  "dependencies": {
+  "dependencies": { 
     "axios": "^0.21.0",
     "child_process": "^1.0.2",
     "express": "^4.17.1",
