@@ -5,10 +5,12 @@ import cp from "child_process"
 
 const redis_storage = Redis.createClient() // For mac rdb saved in /usr/local/var/db/redis
 let app = express();
+
+// sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
 app.listen(8080, function () {
   console.log("Express server has started on port 8080");
 });
-// sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+
 
 app.use(express.static(path.join(__dirname, "/")))
 app.use(express.json())

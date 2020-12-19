@@ -4,7 +4,7 @@
   "description": "upbit 시세 조회 및 알림 봇",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc && sudo pm2 start dist/index.js",
+    "start": "npx tsc && pm2 start dist/index.js && pm2 start dist/scheduler.js --cron '0 1 9 * * ?' --no-autorestart",
     "dev": "npx ts-node index.ts"
   },
   "author": "JunBeum-Cho",
@@ -13,7 +13,6 @@
     "axios": "^0.21.0",
     "child_process": "^1.0.2",
     "express": "^4.17.1",
-    "node-telegram-bot-api": "^0.50.0",
     "pm2": "^4.5.1",
     "redis": "^3.0.2",
     "ts-node": "^9.1.0",

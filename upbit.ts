@@ -1,6 +1,6 @@
 import Axios from "axios"
-// import TelegramBot from "node-telegram-bot-api"
 import Redis from "redis"
+import { sleep, telegram_msg } from "./utils"
 
 const alt_boundary = 40
 const bitcoin_boundary = 3
@@ -9,28 +9,9 @@ const majorcoin_list = ["KRW-XRP", "KRW-ETH", "KRW-BSV", "KRW-ADA", "KRW-XLM", "
 const threeMinPumping_boundary = 7
 const fiveMinPumping_boundary = 10
 
-const token= '1136799268:AAEAHJKs1ZWH_lqmRtRWdMDB_l0Vetq5a_E'
-// const bot = new TelegramBot(token)
-const chatId = "@letsgetittt";
-const chatIdINT = '-1001202777995'
+
 let history = {}
-
 const redis_storage = Redis.createClient()
-
-const sleep = (ms: number) => {
-  return new Promise(resolve=>{
-      setTimeout(resolve,ms)
-  })
-}
-
-// const telegram_msg = (text: string) => {
-//   bot.sendMessage(chatId, text);
-// }
-
-const telegram_msg = async (text: string) => {
-  await Axios.get(`https://api.telegram.org/bot${token}/sendmessage?chat_id=${chatIdINT}&text=${encodeURIComponent(text)}`)
-  await sleep(500)
-}
 
 process.on('SIGINT', () => {
   console.log("kill command received")
