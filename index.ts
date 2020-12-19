@@ -2,8 +2,14 @@ import express from "express";
 import path from "path"
 import Redis from "redis"
 import cp from "child_process"
-
+import cron from 'node-cron'
 const redis_storage = Redis.createClient() // For mac rdb saved in /usr/local/var/db/redis
+
+// second minute hour day-of-month month day-of-week
+cron.schedule('0 1 9 * * *', function(){
+  console.log('node-cron 실행');
+});
+
 let app = express();
 
 // sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
