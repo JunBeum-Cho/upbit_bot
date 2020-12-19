@@ -4,7 +4,7 @@
   "description": "upbit 시세 조회 및 알림 봇",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc && pm2 start dist/index.js && pm2 start dist/scheduler.js --cron '0 1 9 * * ?' --no-autorestart",
+    "start": "npx tsc && pm2 start dist/index.js",
     "dev": "npx ts-node index.ts"
   },
   "author": "JunBeum-Cho",
