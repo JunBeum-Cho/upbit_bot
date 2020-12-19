@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, "/")))
 app.use(express.json())
 
 let upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
+redis_storage.set("status", "running")
 
 app.get("/", function(req, res) {
   redis_storage.get("status", (err, reply) => {
