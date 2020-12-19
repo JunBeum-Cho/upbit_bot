@@ -17,3 +17,10 @@ export const sleep = (ms: number) => {
         setTimeout(resolve,ms)
     })
 }
+
+export const stop_and_restart = async () => {
+    await Axios.get(`http://junbeumcho.ga/stop`)
+    await sleep(3000)
+    await Axios.get(`http://junbeumcho.ga/start`)
+    telegram_msg(`* 9시 정각 프로그램 리부팅*`)
+}
