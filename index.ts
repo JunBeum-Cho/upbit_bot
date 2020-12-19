@@ -5,14 +5,14 @@ import cp from "child_process"
 
 const redis_storage = Redis.createClient() // For mac rdb saved in /usr/local/var/db/redis
 let app = express();
-let upbit_process: any
-
 app.listen(80, function () {
   console.log("Express server has started on port 80");
 });
 
 app.use(express.static(path.join(__dirname, "/")))
 app.use(express.json())
+
+let upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
 
 app.get("/", function(req, res) {
   redis_storage.get("status", (err, reply) => {
@@ -48,8 +48,14 @@ app.get("/start",  function(req, res) {
     if(reply === "running") {
       res.send("already running")
     } else {
-      upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
-      res.send("successfully started")
+      try {
+        upbit_process.kill('SIGINT')
+      } catch {
+        console.log("Trying to start upbit_process")
+      } finally {
+        upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
+        res.send("successfully started")
+      }
     }
   })
 })
@@ -95,8 +101,8 @@ app.get("/size", function(req, res) {
   })
 })
 
-app.get("/clear", function(req, res) {
-  redis_storage.del("status", "last_error", "history", (err, reply)=>{
+app.get("/reset", function(req, res) {
+  redis_storage.del("status", "last_error", "history", (err, reply) => {
     res.send(`RESET DB`)
   })
 })
