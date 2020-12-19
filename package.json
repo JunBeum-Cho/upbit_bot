@@ -4,7 +4,8 @@
   "description": "upbit 시세 조회 및 알림 봇",
   "main": "index.js",
   "scripts": {
-    "test": "npx ts-node index.ts"
+    "start": "npx tsc && pm2 start dist/index.js",
+    "dev": "npx ts-node index.ts"
   },
   "author": "JunBeum-Cho",
   "license": "MIT",
