@@ -27,7 +27,7 @@ class Alerts extends React.Component<Props> {
   render() {
     return (
       this.props.status === "running"
-      ? <div className="mt-5 mt-lg-6 col-lg-6" style={{alignContent: "center", display: "inline-block"}}>
+      ? <div className="mt-4 mt-lg-6 col-lg-6" style={{alignContent: "center", display: "inline-block"}}>
         <UncontrolledAlert color="success" fade={true}>
           <span className="alert-inner--icon">
             <i className="ni ni-like-2" />

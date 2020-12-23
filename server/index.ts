@@ -20,7 +20,7 @@ app.listen(8080, function () {
 });
 
 
-app.use(express.static(path.join(__dirname, "/../../client/public")))
+app.use(express.static(path.join(__dirname, "/../../client/build")))
 app.use(express.json())
 
 let upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})

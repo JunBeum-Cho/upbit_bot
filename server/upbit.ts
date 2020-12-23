@@ -127,8 +127,8 @@ async function check_notice(coinName: string) {
   let notice_req = (await Axios.get("https://api-manager.upbit.com/api/v1/notices?page=1&per_page=20")).data
   // notice_req.data.list[0].title
   for (let index=0; index < 5; index ++) {
-    if(notice_req[index].title.includes(coinName.replace("KRW-", ""))) {
-      telegram_msg(`관련 공지:\n${notice_req[index].title}`)
+    if(notice_req.data.list[index].title.includes(coinName.replace("KRW-", ""))) {
+      telegram_msg(`관련 공지:\n${notice_req.data.list[index].title}`)
     }
   }
 }

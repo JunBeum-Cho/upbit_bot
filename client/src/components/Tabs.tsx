@@ -55,7 +55,7 @@ class TabsSection extends React.Component<Props> {
     return (
       <div style={{padding: "0px 20px 0px 20px"}}>
         <Row className="justify-content-center">
-          <Col className="mt-5 mt-lg-0" lg="6">
+          <Col className="mt-2 mt-lg-0" lg="6">
             <div className="nav-wrapper">
               <Nav
                 className="nav-fill flex-column flex-md-row"
