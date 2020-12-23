@@ -27,21 +27,51 @@ let upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
 redis_storage.set("status", "running")
 
 app.get("/", function(req, res) {
-    let status, last_error, history
+    let status, lasterror, history
     try{
       redis_storage.get("status", (err, status_reply) => {
         status = status_reply
-        redis_storage.get("last_error", (err, last_error_reply) => {
-          last_error = last_error_reply
+        redis_storage.get("lasterror", (err, lasterror_reply) => {
+          lasterror = lasterror_reply
           redis_storage.lrange("history", 0, 10, (err, history_reply) => {
             history = history_reply
-            res.send(`STATUS: ${status}\n\nLAST ERROR: ${last_error}\n\nHISTORY: ${history}`)
+            res.json({
+              "status": status,
+              "lasterror": lasterror,
+              "history": history
+            })
           })
         })
       })
     } catch (err) {
       res.send(`ERROR: ${err}`)
     }
+})
+
+app.get("/data", function(req, res) {
+  let status, lasterror, history, messages
+  try{
+    redis_storage.get("status", (err, status_reply) => {
+      status = status_reply
+      redis_storage.get("lasterror", (err, lasterror_reply) => {
+        lasterror = lasterror_reply
+        redis_storage.lrange("history", 0, 10, (err, history_reply) => {
+          history = history_reply
+          redis_storage.lrange("messages", 0, 10, (err, messages_reply) => {
+            messages = messages_reply
+            res.json({
+              "status": status,
+              "history": history,
+              "lasterror": lasterror,
+              "messages": messages
+            })
+          })
+        })
+      })
+    })
+  } catch (err) {
+    res.send(`ERROR: ${err}`)
+  }
 })
 
 
@@ -104,7 +134,7 @@ app.get("/size", function(req, res) {
 })
 
 app.get("/reset", function(req, res) {
-  redis_storage.del("status", "last_error", "history", (err, reply) => {
+  redis_storage.del("status", "lasterror", "history", (err, reply) => {
     res.send(`RESET DB`)
   })
 })

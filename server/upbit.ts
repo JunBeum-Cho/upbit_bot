@@ -25,14 +25,14 @@ export default async function main() {
     while(true) {
       redis_storage.set("status", "running")
       await data()
-      redis_storage.lpush("history", ` ${new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})}`)
+      redis_storage.lpush("history", `${new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"})}`)
       await sleep(10000)
     }
   } catch (e) {
     await sleep(10000)
     telegram_msg(`*에러발생*\n${e}`)
     redis_storage.set("status", "stopped")
-    redis_storage.set("last_error", new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"}))
+    redis_storage.set("lasterror", new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"}))
     main()
   }
 }
@@ -45,11 +45,23 @@ async function data()  {
     for (let coin of currmarket_data) {
       let dayChg = coin?.change_rate * 100
       if(coin?.market === "KRW-BTC" && coin?.change === 'RISE' && dayChg > bitcoin_boundary) {
-        if (check_normal(coin, 1800, dayChg.toFixed(2))) {telegram_msg(`${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`)}
+        if (check_normal(coin, 1800, dayChg.toFixed(2), true, 2)) {
+          let msg = `${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`
+          telegram_msg(msg)
+          redis_storage.lpush("messages", msg)
+        }
       } else if(majorcoin_list.includes(coin?.market) && coin?.change === 'RISE' && dayChg > majorcoin_boundary) {
-        if (check_normal(coin, 1800, dayChg.toFixed(2))) {telegram_msg(`${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`)}
+        if (check_normal(coin, 1800, dayChg.toFixed(2), true, 3)) {
+          let msg = `${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`
+          telegram_msg(msg)
+          redis_storage.lpush("messages", msg)
+        }
       } else if(coin?.change === 'RISE' && dayChg> alt_boundary) {
-        if (check_normal(coin, 900, dayChg.toFixed(2), true)) {telegram_msg(`${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`)}
+        if (check_normal(coin, 900, dayChg.toFixed(2), true, 10)) {
+          let msg = `${coin?.market}가 당일 ${dayChg.toFixed(2)}%만큼 상승중`
+          telegram_msg(msg)
+          redis_storage.lpush("messages", msg)
+        }
       }
     }
 
@@ -60,29 +72,31 @@ async function data()  {
       let fiveMinChg = ((minutes_5[1]?.trade_price / minutes_5[1]?.opening_price) - 1) * 100
       if (threeMinChg > threeMinPumping_boundary) {
         if (check_pump(coin, 180)) {
-          telegram_msg(`${minutes_3[1]?.market}가 최근 3분동안 ${threeMinChg.toFixed(2)}%만큼 급등중`)
-          let notice_req = (await Axios.get("https://api-manager.upbit.com/api/v1/notices?page=1&per_page=20")).data
-          telegram_msg(`현재공지:\n\n1. ${notice_req.data.list[0].title}\n\n2. ${notice_req.data.list[1].title}\n\n3. ${notice_req.data.list[2].title}`)
-        }
+          let msg = `${minutes_3[1]?.market}가 최근 3분동안 ${threeMinChg.toFixed(2)}%만큼 급등중`
+          telegram_msg(msg)
+          redis_storage.lpush("messages", msg)
+          this.check_notice()
+          }
       } else if (fiveMinChg > fiveMinPumping_boundary) {
         if (check_pump(coin, 300)) {
-          telegram_msg(`${minutes_5[1]?.market}가 최근 5분동안 ${fiveMinChg.toFixed(2)}%만큼 급등중`)
-          let notice_req = (await Axios.get("https://api-manager.upbit.com/api/v1/notices?page=1&per_page=20")).data
-          telegram_msg(`현재공지:\n\n1. ${notice_req.data.list[0].title}\n\n2. ${notice_req.data.list[1].title}\n\n3. ${notice_req.data.list[2].title}`)
+          let msg = `${minutes_5[1]?.market}가 최근 5분동안 ${fiveMinChg.toFixed(2)}%만큼 급등중`
+          telegram_msg(msg)
+          redis_storage.lpush("messages", msg)
+          this.check_notice()
         }
       }
       await sleep(300)
     }
 }
 
-function check_normal(coin: any, interval: number, dayChg: String, filter: boolean = false) {
+function check_normal(coin: any, interval: number, dayChg: String, filter: boolean = false, filter_rate?: number) {
   let currTime = new Date()
   if(!history[coin?.market]) {
     history[coin?.market] = {currTime: currTime, dayChg: dayChg}
     return true
   } else if (history[coin?.market] && (currTime.getTime() - history[coin?.market].currTime.getTime())/1000 > interval) {
     if(filter) {
-      if (Number(dayChg) - Number(history[coin?.market].dayChg) > 10) {
+      if (Number(dayChg) - Number(history[coin?.market].dayChg) > filter_rate) {
         history[coin?.market] = {currTime: currTime, dayChg: dayChg}
         return true
       } else
@@ -106,6 +120,16 @@ function check_pump(coin: any, interval: number) {
     return true
   } else {
     return false
+  }
+}
+
+async function check_notice(coinName: string) {
+  let notice_req = (await Axios.get("https://api-manager.upbit.com/api/v1/notices?page=1&per_page=20")).data
+  // notice_req.data.list[0].title
+  for (let index=0; index < 5; index ++) {
+    if(notice_req[index].title.includes(coinName.replace("KRW-", ""))) {
+      telegram_msg(`관련 공지:\n${notice_req[index].title}`)
+    }
   }
 }
 
