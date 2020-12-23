@@ -17,7 +17,6 @@ class App extends React.Component {
 
   async componentDidMount() {
     let req = await (await Axios.get("/data")).data
-    console.log(req)
     this.setState({
       status: req.status,
       history: req.history,
@@ -54,7 +53,6 @@ class App extends React.Component {
   startBtn_onClick = async() => {
     let x = await Axios.get("/start") //start로 바꾸기
     let req = await (await Axios.get("/data")).data
-    console.log(req)
     this.setState({
       status: req.status,
       history: req.history,
