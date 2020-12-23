@@ -20,7 +20,7 @@ app.listen(8080, function () {
 });
 
 
-app.use(express.static(path.join(__dirname, "/")))
+app.use(express.static(path.join(__dirname, "../client/public")))
 app.use(express.json())
 
 let upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
@@ -78,7 +78,7 @@ app.get("/data", function(req, res) {
 app.get("/start",  function(req, res) {
   redis_storage.get("status", (err, reply) => {
     if(reply === "running") {
-      res.send("already running")
+      res.json({msg: "already running"})
     } else {
       try {
         upbit_process.kill('SIGINT')
@@ -86,7 +86,7 @@ app.get("/start",  function(req, res) {
         console.log("Trying to start upbit_process")
       } finally {
         upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
-        res.send("successfully started")
+        res.sendStatus(200)
       }
     }
   })
