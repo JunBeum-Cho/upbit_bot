@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f6291217.chunk.css",
+    "main.js": "/static/js/main.989dd018.chunk.js",
+    "main.js.map": "/static/js/main.989dd018.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3e176671.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3e176671.js.map",
+    "static/js/2.036ffd0a.chunk.js": "/static/js/2.036ffd0a.chunk.js",
+    "static/js/2.036ffd0a.chunk.js.map": "/static/js/2.036ffd0a.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c78bda7f01d13d0db14477e325d6a558.js": "/precache-manifest.c78bda7f01d13d0db14477e325d6a558.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.f6291217.chunk.css.map": "/static/css/main.f6291217.chunk.css.map",
+    "static/js/2.036ffd0a.chunk.js.LICENSE.txt": "/static/js/2.036ffd0a.chunk.js.LICENSE.txt",
+    "static/media/font-awesome.min.css": "/static/media/fontawesome-webfont.fee66e71.woff",
+    "static/media/nucleo.css": "/static/media/nucleo-icons.f82ec6ba.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3e176671.js",
+    "static/js/2.036ffd0a.chunk.js",
+    "static/css/main.f6291217.chunk.css",
+    "static/js/main.989dd018.chunk.js"
+  ]
+}
