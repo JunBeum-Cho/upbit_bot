@@ -38,7 +38,7 @@ class Alerts extends React.Component<Props> {
         </UncontrolledAlert>
       </div>
       :
-      <div style={{width: "50%", alignContent: "center", display: "inline-block", margin: "50px 0px 0px 0px"}}>
+      <div className="mt-4 mt-lg-6 col-lg-6" style={{alignContent: "center", display: "inline-block"}}>
         <UncontrolledAlert color="danger" fade={false}>
           <span className="alert-inner--icon">
             <i className="ni ni-support-16" />

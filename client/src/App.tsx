@@ -39,7 +39,7 @@ class App extends React.Component {
 
   renderButtons() {
     return (
-      <div className="mt-4 mb-4 mt-lg-5 col-lg-6" style={{alignContent: "center", display: "inline-block"}}>
+      <div className="mt-4 mb-6 mt-lg-5 col-lg-6" style={{alignContent: "center", display: "inline-block"}}>
         <Button size="lg" className="btn-1 ml-1" color="success" type="button" style={{width: "33%"}} onClick={this.startBtn_onClick}>
           Start
         </Button>
