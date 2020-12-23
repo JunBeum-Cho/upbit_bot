@@ -4,8 +4,8 @@
   "description": "upbit 시세 조회 및 알림 봇",
   "main": "index.js",
   "scripts": {
-    "start": "cd client && yarn && yarn build && rm -rf public && mv build public && cd ../server && yarn && npx tsc && pm2 start dist/index.js",
-    "dev": "npx ts-node index.ts"
+    "start": "cd client && yarn && yarn build && rm -rf public && mv build public && cd ../server && yarn && npx tsc",
+    "dev": "cd server && npx ts-node index.ts"
   },
   "author": "JunBeum-Cho",
   "license": "MIT"
