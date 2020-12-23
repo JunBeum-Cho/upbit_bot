@@ -27,25 +27,7 @@ let upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
 redis_storage.set("status", "running")
 
 app.get("/", function(req, res) {
-    let status, lasterror, history
-    try{
-      redis_storage.get("status", (err, status_reply) => {
-        status = status_reply
-        redis_storage.get("lasterror", (err, lasterror_reply) => {
-          lasterror = lasterror_reply
-          redis_storage.lrange("history", 0, 10, (err, history_reply) => {
-            history = history_reply
-            res.json({
-              "status": status,
-              "lasterror": lasterror,
-              "history": history
-            })
-          })
-        })
-      })
-    } catch (err) {
-      res.send(`ERROR: ${err}`)
-    }
+    res.sendFile("/index.html")
 })
 
 app.get("/data", function(req, res) {
