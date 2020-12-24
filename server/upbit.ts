@@ -75,14 +75,14 @@ async function data()  {
           let msg = `${minutes_3[1]?.market}가 최근 3분동안 ${threeMinChg.toFixed(2)}%만큼 급등중`
           telegram_msg(msg)
           redis_storage.lpush("messages", msg)
-          this.check_notice()
+          check_notice(coin)
           }
       } else if (fiveMinChg > fiveMinPumping_boundary) {
         if (check_pump(coin, 300)) {
           let msg = `${minutes_5[1]?.market}가 최근 5분동안 ${fiveMinChg.toFixed(2)}%만큼 급등중`
           telegram_msg(msg)
           redis_storage.lpush("messages", msg)
-          this.check_notice()
+          check_notice(coin)
         }
       }
       await sleep(300)
