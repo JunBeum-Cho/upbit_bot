@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Tabs from "./components/Tabs"
 import Alerts from "./components/Alerts"

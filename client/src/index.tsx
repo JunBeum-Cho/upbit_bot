@@ -5,15 +5,21 @@ import App from './App';
 import "./assets/vendor/nucleo/css/nucleo.css";
 import "./assets/vendor/font-awesome/css/font-awesome.min.css";
 import "./assets/scss/argon-design-system-react.scss?v1.1.0";
+import store from "./redux/store"
+import {Provider} from 'react-redux'
 import chart from "./chart"
-import {BrowserRouter, Route} from "react-router-dom"
+import {BrowserRouter, Route, Switch} from "react-router-dom"
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-    <Route exact path="/" component={App}/>
-    <Route path="/chart" component={chart}/>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={App}/>
+          <Route path="/chart" component={chart}/>
+        </Switch>
+      </BrowserRouter>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
