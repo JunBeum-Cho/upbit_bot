@@ -5,7 +5,7 @@ import Alerts from "./components/Alerts"
 import Axios from "axios"
 import { Button, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import TradingViewWidget from 'react-tradingview-widget';
-
+import "./chart.css"
 class chart extends React.Component {
 
   state = {
@@ -21,17 +21,21 @@ class chart extends React.Component {
   }
 
   async componentDidMount() {
-
+    
   }
 
   render() {
+    console.log("!@#$!@#")
     return (
       <div>
-        <div style={{display: "block", maxWidth: "80%", alignContent: "center", padding: "40px"}}>
+        <div className="outerdiv">
           {this.renderRadiobtn()}
           {this.renderDropdown()}
         </div>
         <div style={{display: "block"}}>
+          {this.renderChart()}
+          {this.renderChart()}
+          {this.renderChart()}
           {this.renderChart()}
           {this.renderAddChart()}
         </div>
@@ -41,7 +45,7 @@ class chart extends React.Component {
 
   renderRadiobtn() {
     return (
-      <div style={{display: "inline-block"}}>
+      <div className="inlineblock">
         <div className="custom-control custom-radio mb-3">
           <input
             className="custom-control-input"
@@ -77,10 +81,10 @@ class chart extends React.Component {
               {this.state.exchange}
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem href="#pablo" onClick={e => {this.setState({name: "업비트"})}}>
+              <DropdownItem onClick={e => this.setState({exchange: "업비트"})}>
                 업비트
               </DropdownItem>
-              <DropdownItem href="#pablo" onClick={e => {this.setState({name: "바이낸스"})}}>
+              <DropdownItem onClick={e => this.setState({exchange: "바이낸스"})}>
                 바이낸스
               </DropdownItem>
             </DropdownMenu>
@@ -92,10 +96,10 @@ class chart extends React.Component {
   renderChart() {
     const width = this.state.layout === 22 ? "50vw" : "33vw"
     return (
-      <div style={{display: "inline-block", width: width, height: "50vh", padding: "4px"}}>
+      <div className="chart" style={{width:width, height:"50vh"}}>
           <TradingViewWidget
             symbol="BINANCE:BTCUSDT"
-            theme="light"
+            theme="Light"
             interval="5"
             locale="kr"
             autosize
@@ -109,19 +113,12 @@ class chart extends React.Component {
     const width = this.state.layout === 22 ? "50vw" : "33vw"
     return(
       this.state.editing
-      ? <div className="addchart" style={{
-          background: "white",
-          width: width,
-          height: "50vh",
-          color: "black",
-          border: "2px solid #e7e7e7",
-          outline: "none"
-        }}>
-        
-      </div>
-      : <div style={{background: "#FCFCFC"}}>
-        
-      </div>
+      ? <div style={{display: "inline", width: width, height: "50vh", padding: "4px"}}>
+          <div style={{alignContent: "center", width: "75%", height: "75%"}} className="addchart"></div>
+        </div>
+      : <div style={{display: "inline", width: width, height: "50vh", padding: "4px"}}>
+          <div style={{display: "block", alignContent: "center", width: "75%", height: "75%"}} className="addchart greycolor-background"></div>
+        </div>
     )
   }
 }
