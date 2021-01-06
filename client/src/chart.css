@@ -1,8 +1,13 @@
-.outerdiv {
+.nav_outerdiv {
   display: block;
   max-width: 80%;
   align-content: center;
   padding: 40px;
+}
+
+.chart_outerdiv {
+  display: block;
+  padding: 10px;
 }
 
 .inlineblock {
@@ -16,25 +21,32 @@
 
 .chart {
   display: inline-block;
-  padding: 4px;
+  margin: 4px;
 }
 
 .addchart {
-  display: inline-block;
-  background: white;
-  color: black;
+  display: table;
   border: 2px dashed #e7e7e7;
   border-radius: 3px;
   outline: none;
-  font-size: 40px;
-  font-weight: 300;
+  margin: 4px;
+  width: 80%;
+  height: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 12.5%;
+  vertical-align: middle;
 }
 
-.addchart:hover {
+.addchartimg {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: large;
+}
+
+.editing:hover {
   background-color: #e7e7e7;
   cursor: pointer;
-}
-
-.greycolor-backgroud {
-  background: "#FCFCFC";
 }
