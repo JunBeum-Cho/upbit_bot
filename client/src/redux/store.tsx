@@ -3,25 +3,16 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 const initialLoginState = { auth: false }
 const initialListState = {
-    number: 0,
-    bclasses: [
-        {
-            name: "Example List",
-            data: [{
-                course_validation: true,
-                is_offered: true,
-                courseid: 1,
-                course_title: "Example Class",
-                course_subtitle: "Introduction to Example",
-                currently_enrolled: "100",
-                max_enrolled: "150",
-                currently_waitlisted: "0",
-                max_waitlisted: " 50",
-                total_class_grade: "3.6",
-                recent_section_grade: "3.5",
-                recent_section_period: "spring 2020"
-            }]
-        }
+    exchange: "바이낸스",
+    chartlist: [],
+    editing: false,
+    layout: "33",
+    theme: "light",
+    interval: "5",
+    indicators: [
+        "LinearRegression@tv-basicstudies",
+        "RSI@tv-basicstudies",
+        "MASimple@tv-basicstudies"
     ]
 }
 
@@ -42,16 +33,24 @@ function charts(state = initialListState, action) {
     switch (action.type) {
         case undefined:
             return 
-        case "ADD_LIST":
-            return {...state, auth: true}
-        case "DELETE_LIST":
-            return {...state, auth: false}
-        case "CHANGE_LISTNAME":
-            return {...state, auth: false}
-        case "ADD_ITEM":
-            return {...state, auth: true}
-        case "DELETE_ITEM":
-            return {...state, auth: false}
+        case "SELECT_EXCHANGE":
+            return {...state, exchange: action.value}
+        case "CHANGE_EDITING":
+            return {...state, editing: !state.editing}
+        case "SELECT_LAYOUT":
+            return {...state, layout: action.value}
+        case "SELECT_THEME":
+            return {...state, theme: action.value}
+        case "SELECT_INTERVAL":
+            return {...state, interval: action.value}
+        case "SELECT_INDICATOR":
+            return {...state, indicator: action.value}
+        case "ADD_CHART":
+            //여기에서 string 합쳐야함
+            let marketname = action.value + action.value2
+            // chartlist 리스트에 추가해야함
+
+            return {...state, indicator: action.value}
         default:
             return state
     }

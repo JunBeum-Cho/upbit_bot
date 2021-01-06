@@ -7,7 +7,7 @@ import "./assets/vendor/font-awesome/css/font-awesome.min.css";
 import "./assets/scss/argon-design-system-react.scss?v1.1.0";
 import store from "./redux/store"
 import {Provider} from 'react-redux'
-import chart from "./chart"
+import IndexChart from "./index_chart"
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 
 ReactDOM.render(
@@ -16,7 +16,7 @@ ReactDOM.render(
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={App}/>
-          <Route path="/chart" component={chart}/>
+          <Route path="/chart" component={IndexChart}/>
         </Switch>
       </BrowserRouter>
     </React.StrictMode>

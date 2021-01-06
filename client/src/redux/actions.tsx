@@ -1,37 +1,69 @@
 export function login(id: string, pass: string) {
     return {
-      type: "LOGIN"
+      type: "LOGIN",
+      value: true
     }
 }
 
 export function logout() {
     return {
-      type: "LOGOUT"
+      type: "LOGOUT",
+      value: false
     }
 }
 
-export function addChart(text) {
+export function selectExchange(exchangeValue: string) {
     return {
-      type: "ADD_LIST"
+      type: "SELECT_EXCHANGE",
+      value: exchangeValue
     }
 }
-export function deleteChart(text) {
+
+export function add(exchangeValue: string) {
+  return {
+    type: "SELECT_EXCHANGE",
+    value: exchangeValue
+  }
+}
+
+export function changeEditing() {
     return {
-      type: "DELETE_LIST"
+      type: "CHANGE_EDITING"
     }
 }
-export function changeListName(text) {
+
+export function selectLayout(layoutValue: string) {
     return {
-      type: "CHANGE_LISTNAME"
+      type: "SELECT_LAYOUT",
+      value: layoutValue
     }
 }
-export function addItem(text) {
+
+export function selectTheme(themeValue: string) {
     return {
-      type: "ADD_ITEM"
+      type: "SELECT_THEME",
+      value: themeValue
     }
 }
-export function deleteItem(text) {
+
+export function selectInterval(intervalValue: number) {
     return {
-      type: "DELETE_ITEM"
+      type: "SELECT_INTERVAL",
+      value: intervalValue
     }
+}
+
+export function selectIndicator(indicatorValue: string[]) {
+    return {
+      type: "SELECT_INDICATOR",
+      value: indicatorValue
+    }
+}
+
+export function addChart(exchange: string, coinpair: string) {
+  return {
+    type: "ADD_CHART",
+    value: exchange,
+    value2: coinpair
+  }
 }

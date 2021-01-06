@@ -16,7 +16,6 @@
 
 .dropdown {
   margin-left: 40px;
-  vertical-align: text-bottom;
 }
 
 .chart {
@@ -35,7 +34,7 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  top: 12.5%;
+  top: 10%;
   vertical-align: middle;
 }
 
