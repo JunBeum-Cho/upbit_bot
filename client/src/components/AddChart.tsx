@@ -31,11 +31,13 @@ import "../chart.css";
 
 class AddChart extends React.Component<AddChartProps> {
   state = {
-    exchange: "바이낸스",
-    editing: false,
+    exchange: "binance",
+    coinpair: "",
+    editing: false
   };
 
   render() {
+    console.log(this.state)
     const width = this.props.layout === "22" ? "49vw" : "32vw";
     return this.state.editing 
     ? (
@@ -69,7 +71,10 @@ class AddChart extends React.Component<AddChartProps> {
       <IconButton
         style={{ marginLeft: "10px", verticalAlign: "bottom", outline: "none" }}
         aria-label="add"
-        onClick={() => {}}
+        onClick={() => {
+          this.props.addChart(this.state.exchange, this.state.coinpair)
+          this.setState({...this.state, editing: !this.state.editing})
+        }}
       >
         <AddBox />
       </IconButton>
@@ -82,7 +87,7 @@ class AddChart extends React.Component<AddChartProps> {
         style={{ verticalAlign: "bottom", outline: "none" }}
         aria-label="delete"
         onClick={() => {
-          this.setState({ editing: !this.state.editing });
+          this.setState({ ...this.state, exchange: "binance", coinpair: "", editing: !this.state.editing });
         }}
       >
         <DeleteIcon />
@@ -92,10 +97,11 @@ class AddChart extends React.Component<AddChartProps> {
 
   renderAutoComplete() {
     // let binance_list = binance_json.map(item=> item.symbol) 속도가 느려서 대체
-    let binance_list: string[] = [];
+    let binance_list: string[] = []
     for (let coin of binance_json) {
-      binance_list.push(coin.symbol);
+      binance_list.push(coin.symbol)
     }
+
     return (
       <Autocomplete
         style={{ width: "180px", display: "inline-block" }}
@@ -104,7 +110,7 @@ class AddChart extends React.Component<AddChartProps> {
         id="coinList"
         selectOnFocus
         onChange={(event, value) => {
-          console.log(value);
+          this.setState({...this.state, coinpair: value})
         }}
         renderInput={(params) => (
           <TextField {...params} label={"코인명"} margin="normal" />
@@ -119,12 +125,14 @@ class AddChart extends React.Component<AddChartProps> {
         <div className="custom-control custom-radio mb-3 inlineblock">
           <input
             className="custom-control-input"
-            id="customRadio5"
-            name="custom-radio-2"
+            defaultChecked
+            id="exchangeBtn1"
+            name="exchange"
             type="radio"
+            onClick={()=>{this.setState({...this.state, exchange: "binance"})}}
           />
-          <label className="custom-control-label" htmlFor="customRadio5">
-            업비트 {/* 3 X 3 */}
+          <label className="custom-control-label" htmlFor="exchangeBtn1">
+            바이낸스 {/* 3 X 3 */}
           </label>
         </div>
         <div
@@ -133,44 +141,45 @@ class AddChart extends React.Component<AddChartProps> {
         >
           <input
             className="custom-control-input"
-            defaultChecked
-            id="customRadio6"
-            name="custom-radio-2"
+            id="exchangeBtn2"
+            name="exchange"
             type="radio"
+            onClick={()=>{this.setState({...this.state, exchange: "upbit"})}}
           />
-          <label className="custom-control-label" htmlFor="customRadio6">
-            바이낸스 {/* 2 X 2 */}
+          <label className="custom-control-label" htmlFor="exchangeBtn2">
+            업비트 {/* 2 X 2 */}
           </label>
         </div>
       </div>
     );
   }
 
-  renderDropdown() {
-    return (
-      <div className="dropdown">
-        <UncontrolledDropdown group>
-          <DropdownToggle caret color="secondary">
-            {this.state.exchange}
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem
-              style={{ outline: "none" }}
-              onClick={(e) => this.setState({ exchange: "업비트" })}
-            >
-              업비트
-            </DropdownItem>
-            <DropdownItem
-              style={{ outline: "none" }}
-              onClick={(e) => this.setState({ exchange: "바이낸스" })}
-            >
-              바이낸스
-            </DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
-      </div>
-    );
-  }
+  // renderDropdown() {
+  //   return (
+  //     <div className="dropdown">
+  //       <UncontrolledDropdown group>
+  //         <DropdownToggle caret color="secondary">
+  //           {this.state.exchange}
+  //         </DropdownToggle>
+  //         <DropdownMenu>
+  //           <DropdownItem
+  //             style={{ outline: "none" }}
+  //             onClick={(e) => this.setState({ exchange: "업비트" })}
+  //           >
+  //             업비트
+  //           </DropdownItem>
+  //           <DropdownItem
+  //             style={{ outline: "none" }}
+  //             onClick={(e) => this.setState({ exchange: "바이낸스" })}
+  //           >
+  //             바이낸스
+  //           </DropdownItem>
+  //         </DropdownMenu>
+  //       </UncontrolledDropdown>
+  //     </div>
+  //   )
+  // }
+
 }
 
 const mapStateToProps = (state) => ({
@@ -180,7 +189,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addChart: (exchange, coinpair) =>
-    dispatch(actions.addChart(exchange, coinpair)),
+    dispatch(actions.addChart(exchange, coinpair))
 })
 
 type AddChartProps = ReturnType<typeof mapStateToProps> &

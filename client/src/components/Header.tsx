@@ -45,23 +45,25 @@ class Header extends React.Component<HeaderProps> {
         <div className="custom-control custom-radio mb-3">
           <input
             className="custom-control-input"
-            id="customRadio5"
-            name="custom-radio-2"
+            defaultChecked
+            id="layout33"
+            name="layout"
             type="radio"
+            onClick={() => {this.props.selectLayout("33")}}
           />
-          <label className="custom-control-label" htmlFor="customRadio5">
+          <label className="custom-control-label" htmlFor="layout33">
             3 X 3
           </label>
         </div>
         <div className="custom-control custom-radio mb-3">
           <input
             className="custom-control-input"
-            defaultChecked
-            id="customRadio6"
-            name="custom-radio-2"
+            id="layout22"
+            name="layout"
             type="radio"
+            onClick={() => {this.props.selectLayout("22")}}
           />
-          <label className="custom-control-label" htmlFor="customRadio6">
+          <label className="custom-control-label" htmlFor="layout22">
             2 X 2
           </label>
         </div>

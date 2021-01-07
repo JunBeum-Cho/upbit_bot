@@ -31,9 +31,12 @@ import "../chart.css";
 
 class Chart extends React.Component<ChartProps> {
   render() {
+    const { chartlist, layout, theme, interval, indicators } = this.props
+    // return tableData.map((data: any, index: number) => {
+    //     return <TableBody handleRemove={this.handleRemove} key={index} data={data} />
+    // })
     return (
       <>
-        {this.renderChart()}
         {this.renderChart()}
       </>
     )
@@ -59,6 +62,7 @@ class Chart extends React.Component<ChartProps> {
 
 const mapStateToProps = (state) => ({
   auth: state.login.auth,
+  chartlist: state.login.chartlist,
   layout: state.charts.layout,
   theme: state.charts.theme,
   interval: state.charts.interval,

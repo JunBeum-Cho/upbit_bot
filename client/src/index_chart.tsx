@@ -15,7 +15,7 @@ class IndexChart extends React.Component {
       <div>
         <Header />
         <div className="chart_outerdiv">
-          <Chart />
+          <Chart/>
           <AddChart />
         </div>
       </div>
