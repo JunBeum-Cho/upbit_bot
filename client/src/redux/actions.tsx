@@ -1,4 +1,4 @@
-export function login(id: string, pass: string) {
+export function login(id?: string, pass?: string) {
     return {
       type: "LOGIN",
       value: true
@@ -9,26 +9,6 @@ export function logout() {
     return {
       type: "LOGOUT",
       value: false
-    }
-}
-
-export function selectExchange(exchangeValue: string) {
-    return {
-      type: "SELECT_EXCHANGE",
-      value: exchangeValue
-    }
-}
-
-export function add(exchangeValue: string) {
-  return {
-    type: "SELECT_EXCHANGE",
-    value: exchangeValue
-  }
-}
-
-export function changeEditing() {
-    return {
-      type: "CHANGE_EDITING"
     }
 }
 

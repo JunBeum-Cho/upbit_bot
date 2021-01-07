@@ -3,9 +3,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 const initialLoginState = { auth: false }
 const initialListState = {
-    exchange: "바이낸스",
+    auth: false,
     chartlist: [],
-    editing: false,
     layout: "33",
     theme: "light",
     interval: "5",
@@ -20,9 +19,9 @@ function login(state = initialLoginState, action) {
     console.log(state, action)
     switch (action.type) {
         case "LOGIN":
-            return {...state, auth: true}
+            return {...state, auth: action.value}
         case "LOGOUT":
-            return {...state, auth: false}
+            return {...state, auth: action.value}
         default:
             return state
     }
@@ -33,10 +32,6 @@ function charts(state = initialListState, action) {
     switch (action.type) {
         case undefined:
             return 
-        case "SELECT_EXCHANGE":
-            return {...state, exchange: action.value}
-        case "CHANGE_EDITING":
-            return {...state, editing: !state.editing}
         case "SELECT_LAYOUT":
             return {...state, layout: action.value}
         case "SELECT_THEME":

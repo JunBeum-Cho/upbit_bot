@@ -11,6 +11,8 @@ import AddBox from "@material-ui/icons/AddBox";
 import DeleteIcon from "@material-ui/icons/Delete";
 import TextField from "@material-ui/core/TextField";
 import binance_json from "../binance_list.json";
+import { connect } from 'react-redux';
+import { login, logout } from "../redux/actions"
 import "./chart.css";
 
 class Header extends React.Component {
@@ -54,4 +56,18 @@ renderRadioBtn() {
 
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+    auth: state.login.auth,
+    chartlist: state.charts.chartlists,
+    layout: state.charts.layout,
+    theme: state.charts.theme,
+    interval: state.charts.interval,
+    indicators: state.charts.indicators
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    login: () => dispatch(login()),
+    logout: () => dispatch(logout())
+})
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
