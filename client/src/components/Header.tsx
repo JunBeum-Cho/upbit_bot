@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "../App.css";
 import Tabs from "./Tabs";
 import Alerts from "./Alerts";
 import Axios from "axios";
@@ -13,22 +13,22 @@ import TextField from "@material-ui/core/TextField";
 import binance_json from "../binance_list.json";
 import { connect } from 'react-redux';
 import * as actions from "../redux/actions"
-import "./chart.css";
+import "../chart.css";
 
-interface HeaderProps {
-    auth: boolean,
-    chartlist: string[],
-    layout: string,
-    theme: string,
-    interval: string,
-    indicators: string[],
-    login: () => void,
-    logout: () => void,
-    selectLayout: (layout) => void
-    selectTheme: (theme) => void,
-    selectInterval: (interval) => void,
-    selectIndicator: (indicator) => void
-}
+// interface HeaderProps {
+//     auth: boolean,
+//     chartlist: string[],
+//     layout: string,
+//     theme: string,
+//     interval: string,
+//     indicators: string[],
+//     login: () => void,
+//     logout: () => void,
+//     selectLayout: (layout) => void
+//     selectTheme: (theme) => void,
+//     selectInterval: (interval) => void,
+//     selectIndicator: (indicator) => void
+// }
 
 class Header extends React.Component<HeaderProps> {
   render() {
@@ -39,7 +39,7 @@ class Header extends React.Component<HeaderProps> {
     )
   }
 
-renderRadioBtn() {
+  renderRadioBtn() {
     return (
       <div className="inlineblock">
         <div className="custom-control custom-radio mb-3">
@@ -88,5 +88,7 @@ const mapDispatchToProps = (dispatch) => ({
     selectInterval: (interval) => dispatch(actions.selectInterval(interval)),
     selectIndicator: (indicator) => dispatch(actions.selectIndicator(indicator))
 })
+
+type HeaderProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
   
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
