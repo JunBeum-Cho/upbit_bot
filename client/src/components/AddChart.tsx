@@ -12,12 +12,17 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import TextField from "@material-ui/core/TextField";
 import binance_json from "../binance_list.json"
 import { connect } from 'react-redux';
+import * as actions from "../redux/actions"
 import "./chart.css"
 
 //https://www.binance.com/api/v1/ticker/allPrices
+interface AddChartProps {
+    auth: boolean,
+    layout: string,
+    addChart: () => void
+}
 
-class AddChart extends React.Component {
-
+class AddChart extends React.Component<AddChartProps> {
     state = {
         exchange: "바이낸스",
         editing: false
@@ -39,7 +44,7 @@ class AddChart extends React.Component {
     }
 
       renderAddChart() {
-        const width = this.state.layout === 22 ? "49vw" : "32vw"
+        const width = this.props.layout === "22" ? "49vw" : "32vw"
         return(
           this.state.editing
           ? <div className= "chart" style={{width: width, height: "49vh"}}>
@@ -151,16 +156,11 @@ class AddChart extends React.Component {
 
 const mapStateToProps = (state) => ({
     auth: state.login.auth,
-    chartlist: state.charts.chartlists,
-    layout: state.charts.layout,
-    theme: state.charts.theme,
-    interval: state.charts.interval,
-    indicators: state.charts.indicators
+    layout: state.charts.layout
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    login: () => dispatch(login()),
-    logout: () => dispatch(logout())
+    addChart: (exchange, coinpair) => dispatch(actions.addChart(exchange, coinpair))
 })
   
-  export default connect(mapStateToProps, mapDispatchToProps)(AddChart)
+export default connect(mapStateToProps, mapDispatchToProps)(AddChart)

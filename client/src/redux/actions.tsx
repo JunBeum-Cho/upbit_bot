@@ -1,4 +1,4 @@
-export function login(id?: string, pass?: string) {
+export function login() {
     return {
       type: "LOGIN",
       value: true
@@ -26,7 +26,7 @@ export function selectTheme(themeValue: string) {
     }
 }
 
-export function selectInterval(intervalValue: number) {
+export function selectInterval(intervalValue: string) {
     return {
       type: "SELECT_INTERVAL",
       value: intervalValue

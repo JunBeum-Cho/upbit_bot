@@ -14,8 +14,16 @@ import binance_json from "../binance_list.json"
 import { connect } from 'react-redux';
 import "./chart.css"
 
+interface ChartProps {
+  auth: boolean,
+  layout: string,
+  theme: string,
+  interval: string,
+  indicators: string[]
+}
+
 //https://www.binance.com/api/v1/ticker/allPrices
-class Chart extends React.Component {
+class Chart extends React.Component<ChartProps> {
 
   render() {
       return (
@@ -26,7 +34,7 @@ class Chart extends React.Component {
     }
 
     renderChart() {
-        const width = this.state.layout === 22 ? "49vw" : "32vw"
+        const width = this.props.layout === "22" ? "49vw" : "32vw"
         return (
           <div className="chart" style={{width:width, height:"49vh"}}>
               <TradingViewWidget
@@ -35,7 +43,7 @@ class Chart extends React.Component {
                 interval="5"
                 locale="kr"
                 autosize
-                studies= {this.state.indicators}
+                studies= {this.props.indicators}
               />
           </div>
         )
@@ -43,12 +51,15 @@ class Chart extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  storeCount: state.count.count,
+  auth: state.login.auth,
+  layout: state.charts.layout,
+  theme: state.charts.theme,
+  interval: state.charts.interval,
+  indicators: state.charts.indicators
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  increaseStoreCount: () => dispatch(actions.increaseCount()),
-  decreaseStoreCount: () => dispatch(actions.decreaseCount()),
+  // addChart: (exchange, coinpair) => dispatch(actions.addChart(exchange, coinpair))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chart)

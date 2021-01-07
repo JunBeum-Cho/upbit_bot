@@ -12,10 +12,25 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import TextField from "@material-ui/core/TextField";
 import binance_json from "../binance_list.json";
 import { connect } from 'react-redux';
-import { login, logout } from "../redux/actions"
+import * as actions from "../redux/actions"
 import "./chart.css";
 
-class Header extends React.Component {
+interface HeaderProps {
+    auth: boolean,
+    chartlist: string[],
+    layout: string,
+    theme: string,
+    interval: string,
+    indicators: string[],
+    login: () => void,
+    logout: () => void,
+    selectLayout: (layout) => void
+    selectTheme: (theme) => void,
+    selectInterval: (interval) => void,
+    selectIndicator: (indicator) => void
+}
+
+class Header extends React.Component<HeaderProps> {
   render() {
     return(
     <div className="nav_outerdiv">
@@ -66,8 +81,12 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    login: () => dispatch(login()),
-    logout: () => dispatch(logout())
+    login: () => dispatch(actions.login()),
+    logout: () => dispatch(actions.logout()),
+    selectLayout: (layout) => dispatch(actions.selectLayout(layout)),
+    selectTheme: (theme) => dispatch(actions.selectTheme(theme)),
+    selectInterval: (interval) => dispatch(actions.selectInterval(interval)),
+    selectIndicator: (indicator) => dispatch(actions.selectIndicator(indicator))
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
