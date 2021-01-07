@@ -3,14 +3,7 @@ import "../App.css";
 import Tabs from "./Tabs";
 import Alerts from "./Alerts";
 import Axios from "axios";
-import {
-  Button,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Label,
-} from "reactstrap";
+import { Button } from "reactstrap";
 import TradingViewWidget from "react-tradingview-widget";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import IconButton from "@material-ui/core/IconButton";
@@ -37,7 +30,6 @@ class AddChart extends React.Component<AddChartProps> {
   };
 
   render() {
-    console.log(this.state)
     const width = this.props.layout === "22" ? "49vw" : "32vw";
     return this.state.editing 
     ? (

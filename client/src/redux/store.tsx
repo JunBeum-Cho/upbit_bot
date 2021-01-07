@@ -3,10 +3,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 const initialLoginState = { auth: false }
 const initialListState = {
-    auth: false,
-    chartlist: [],
+    chartlist: ["BINANCE:BTCUSDT"],
     layout: "33",
-    theme: "light",
+    theme: "Light",
     interval: "5",
     indicators: [
         "LinearRegression@tv-basicstudies",
@@ -16,7 +15,6 @@ const initialListState = {
 }
 
 function login(state = initialLoginState, action) {
-    console.log("login reducer", state, action)
     switch (action.type) {
         case "LOGIN":
             return {...state, auth: action.value}
@@ -28,7 +26,7 @@ function login(state = initialLoginState, action) {
 } 
 
 function charts(state = initialListState, action) {
-    console.log("charts reducer", state, action)
+    console.log(state)
     switch (action.type) {
         case undefined:
             return 
@@ -41,12 +39,12 @@ function charts(state = initialListState, action) {
         case "SELECT_INDICATOR":
             return {...state, indicator: action.value}
         case "ADD_CHART":
-            //여기에서 string 합쳐야함
             const marketname = `${action.value.toUpperCase()}:${action.value2.toUpperCase()}`
-            // let marketnames = `${action.value.toString().toUppercase()}:${action.value2.toString().toUppercase()}`
-            // chartlist 리스트에 추가해야함
             let chartlist = [...state.chartlist, marketname]
             return {...state, chartlist: chartlist}
+        case "DELETE_CHART":
+            let filtered_chartlist = [...state.chartlist].filter(marketname => marketname !== action.value)
+            return {...state, chartlist: filtered_chartlist}
         default:
             return state
     }

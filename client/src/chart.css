@@ -3,6 +3,13 @@
   max-width: 80%;
   align-content: center;
   padding: 40px;
+  margin: 0 auto 0 auto;
+}
+
+.nav_marketlist {
+  display: inline-block;
+  margin: 0 0 0 40px;
+  vertical-align: top;
 }
 
 .chart_outerdiv {

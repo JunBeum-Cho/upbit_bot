@@ -21,48 +21,33 @@ import binance_json from "../binance_list.json";
 import { connect } from "react-redux";
 import "../chart.css";
 
-// interface ChartProps {
-//   auth: boolean,
-//   layout: string,
-//   theme: string,
-//   interval: string,
-//   indicators: string[]
-// }
 
 class Chart extends React.Component<ChartProps> {
   render() {
     const { chartlist, layout, theme, interval, indicators } = this.props
-    // return tableData.map((data: any, index: number) => {
-    //     return <TableBody handleRemove={this.handleRemove} key={index} data={data} />
-    // })
+    const width = layout === "22" ? "48.5vw" : "32vw";
     return (
-      <>
-        {this.renderChart()}
-      </>
+      this.props.chartlist.map((marketname: string) => {
+        return  (
+          <div key={marketname} className="chart" style={{ width: width, height: "49vh" }}>
+          <TradingViewWidget
+            symbol={marketname}
+            theme={theme}
+            interval={interval}
+            locale="kr"
+            autosize
+            studies={indicators}
+          />
+        </div>
+      )
+      })
     )
   }
-
-  renderChart() {
-    const width = this.props.layout === "22" ? "49vw" : "32vw";
-    return (
-      <div className="chart" style={{ width: width, height: "49vh" }}>
-        <TradingViewWidget
-          symbol="BINANCE:BTCUSDT"
-          theme="Light"
-          interval="5"
-          locale="kr"
-          autosize
-          studies={this.props.indicators}
-        />
-      </div>
-    )
-  }
-
 }
 
 const mapStateToProps = (state) => ({
   auth: state.login.auth,
-  chartlist: state.login.chartlist,
+  chartlist: state.charts.chartlist,
   layout: state.charts.layout,
   theme: state.charts.theme,
   interval: state.charts.interval,

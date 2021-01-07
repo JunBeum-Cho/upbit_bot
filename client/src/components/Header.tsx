@@ -3,7 +3,7 @@ import "../App.css";
 import Tabs from "./Tabs";
 import Alerts from "./Alerts";
 import Axios from "axios";
-import { Button, Label } from "reactstrap";
+import { Button, Label, Badge } from "reactstrap";
 import TradingViewWidget from "react-tradingview-widget";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import IconButton from "@material-ui/core/IconButton";
@@ -15,26 +15,14 @@ import { connect } from 'react-redux';
 import * as actions from "../redux/actions"
 import "../chart.css";
 
-// interface HeaderProps {
-//     auth: boolean,
-//     chartlist: string[],
-//     layout: string,
-//     theme: string,
-//     interval: string,
-//     indicators: string[],
-//     login: () => void,
-//     logout: () => void,
-//     selectLayout: (layout) => void
-//     selectTheme: (theme) => void,
-//     selectInterval: (interval) => void,
-//     selectIndicator: (indicator) => void
-// }
-
 class Header extends React.Component<HeaderProps> {
   render() {
     return(
     <div className="nav_outerdiv">
         {this.renderRadioBtn()}
+        <div className='nav_marketlist'>
+          {this.renderList()}
+        </div>
     </div>
     )
   }
@@ -70,12 +58,33 @@ class Header extends React.Component<HeaderProps> {
       </div>
     )
   }
+  renderList() {
+    return this.props.chartlist.map((marketname) => {
+      return (
+        <Button
+          key={marketname}
+          className="btn-icon btn-3" 
+          size="sm" 
+          color="secondary" 
+          type="button" 
+          onClick={()=> {
+            this.props.deleteChart(marketname)
+          }}
+        >
+          <span className="btn-inner--icon">
+            <i className="fa fa-times" />
+          </span>
+          <span className="btn-inner--text">{marketname}</span>
+        </Button>
+      )
+    })
+  }
 
 }
 
 const mapStateToProps = (state) => ({
     auth: state.login.auth,
-    chartlist: state.charts.chartlists,
+    chartlist: state.charts.chartlist,
     layout: state.charts.layout,
     theme: state.charts.theme,
     interval: state.charts.interval,
@@ -88,7 +97,8 @@ const mapDispatchToProps = (dispatch) => ({
     selectLayout: (layout) => dispatch(actions.selectLayout(layout)),
     selectTheme: (theme) => dispatch(actions.selectTheme(theme)),
     selectInterval: (interval) => dispatch(actions.selectInterval(interval)),
-    selectIndicator: (indicator) => dispatch(actions.selectIndicator(indicator))
+    selectIndicator: (indicator) => dispatch(actions.selectIndicator(indicator)),
+    deleteChart: (chart) => dispatch(actions.deleteChart(chart))
 })
 
 type HeaderProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>

@@ -47,3 +47,10 @@ export function addChart(exchange: string, coinpair: string) {
     value2: coinpair
   }
 }
+
+export function deleteChart(marketname: string) {
+  return {
+    type: "DELETE_CHART",
+    value: marketname
+  }
+}
