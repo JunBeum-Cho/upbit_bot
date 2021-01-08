@@ -6432,6 +6432,12 @@ export const upbit_list = [
   }
 ]
 
+export const bithumb_list = [
+    {"market": "BTCKRW"},
+    {"market": "ETHKRW"},
+
+]
+
 export const indicator_list = [
     {"ADR": "studyADR@tv-basicstudies"},
     {"MACD" : "MACD@tv-basicstudies"},
