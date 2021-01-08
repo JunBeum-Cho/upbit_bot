@@ -20,14 +20,15 @@ import TextField from "@material-ui/core/TextField";
 import binance_json from "../binance_list.json";
 import { connect } from "react-redux";
 import "../chart.css";
+import {binance_list, upbit_list} from "../info_list"
 
 
 class Chart extends React.Component<ChartProps> {
   render() {
-    const { chartlist, layout, theme, interval, indicators } = this.props
+    const { chartlist, layout, theme, interval, indicatorlist } = this.props
     const width = layout === "22" ? "48.5vw" : "32vw";
     return (
-      this.props.chartlist.map((marketname: string) => {
+      chartlist.map((marketname: string) => {
         return  (
           <div key={marketname} className="chart" style={{ width: width, height: "49vh" }}>
           <TradingViewWidget
@@ -36,7 +37,9 @@ class Chart extends React.Component<ChartProps> {
             interval={interval}
             locale="kr"
             autosize
-            studies={indicators}
+            hide_side_toolbar={false}
+            hide_legend={true}
+            studies={indicatorlist}
           />
         </div>
       )
@@ -51,7 +54,7 @@ const mapStateToProps = (state) => ({
   layout: state.charts.layout,
   theme: state.charts.theme,
   interval: state.charts.interval,
-  indicators: state.charts.indicators,
+  indicatorlist: state.charts.indicatorlist,
 })
 
 const mapDispatchToProps = (dispatch) => ({

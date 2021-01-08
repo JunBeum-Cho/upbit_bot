@@ -14,13 +14,9 @@ import binance_json from "../binance_list.json";
 import { connect } from "react-redux";
 import * as actions from "../redux/actions";
 import "../chart.css";
+import {binance_list, upbit_list} from "../info_list"
 
 //https://www.binance.com/api/v1/ticker/allPrices
-// interface AddChartProps {
-//     auth: boolean,
-//     layout: string,
-//     addChart: () =>
-// }
 
 class AddChart extends React.Component<AddChartProps> {
   state = {
@@ -89,15 +85,22 @@ class AddChart extends React.Component<AddChartProps> {
 
   renderAutoComplete() {
     // let binance_list = binance_json.map(item=> item.symbol) 속도가 느려서 대체
-    let binance_list: string[] = []
-    for (let coin of binance_json) {
-      binance_list.push(coin.symbol)
+    let marketlist: string[] = []
+    if(this.state.exchange === "binance") {
+      for (let coin of binance_list) {
+        console.log(coin.symbol)
+        marketlist.push(coin.symbol)
+      }
+    } else {
+      for (let coin of upbit_list) {
+        marketlist.push(coin.market)
+      }
     }
-
+    console.log(marketlist)
     return (
       <Autocomplete
         style={{ width: "180px", display: "inline-block" }}
-        options={binance_list}
+        options={marketlist}
         getOptionLabel={(option) => `${option}`}
         id="coinList"
         selectOnFocus
