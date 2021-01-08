@@ -3,7 +3,7 @@ import "../App.css";
 import Tabs from "./Tabs";
 import Alerts from "./Alerts";
 import Axios from "axios";
-import { Button, Label, Badge } from "reactstrap";
+import { Button, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import TradingViewWidget from "react-tradingview-widget";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import IconButton from "@material-ui/core/IconButton";
@@ -19,9 +19,17 @@ class Header extends React.Component<HeaderProps> {
   render() {
     return(
     <div className="nav_outerdiv">
-        {this.renderRadioBtn()}
-        <div className='nav_marketlist'>
-          {this.renderList()}
+        <div className='nav_radioBtn'>
+            {this.renderRadioBtn()}
+        </div>
+        <div className = "nav_list">
+            <div className='nav_marketlist'>
+            {this.renderMarketList()}
+            </div>
+            <div className='nav_indicatorlist'>
+            {this.renderDropdown()}
+            {this.renderIndicatorList()}
+            </div>
         </div>
     </div>
     )
@@ -29,7 +37,7 @@ class Header extends React.Component<HeaderProps> {
 
   renderRadioBtn() {
     return (
-      <div className="inlineblock">
+      <>
         <div className="custom-control custom-radio mb-3">
           <input
             className="custom-control-input"
@@ -55,10 +63,10 @@ class Header extends React.Component<HeaderProps> {
             2 X 2
           </label>
         </div>
-      </div>
+      </>
     )
   }
-  renderList() {
+  renderMarketList() {
     return this.props.chartlist.map((marketname) => {
       return (
         <Button
@@ -80,6 +88,55 @@ class Header extends React.Component<HeaderProps> {
     })
   }
 
+    renderDropdown() {
+    const list = ["ads", "sadf", "Asdfadsf"]
+    return (
+        <div className="dropdown">
+        <UncontrolledDropdown size="md" group>
+            <DropdownToggle caret color="primary">
+            지표 추가
+            </DropdownToggle>
+            <DropdownMenu style={{maxHeight: "500px", overflowY: "scroll"}}>
+            {list.map((indicator) => {
+                return (
+                    <DropdownItem
+                        style={{ outline: "none" }}
+                        onClick={(e) => this.props.selectIndicator(indicator)}
+                        >
+                        {indicator}
+                    </DropdownItem>
+                )
+            })}
+            </DropdownMenu>
+        </UncontrolledDropdown>
+        </div>
+    )
+    }
+
+    renderIndicatorList() {
+        return this.props.indicatorlist.map((indicator) => {
+            return (
+              <Button
+                key={indicator}
+                className="btn-icon btn-3" 
+                size="sm" 
+                color="secondary" 
+                type="button" 
+                onClick={()=> {
+                  this.props.deleteIndicator(indicator)
+                }}
+              >
+                <span className="btn-inner--icon">
+                  <i className="fa fa-times" />
+                </span>
+                <span className="btn-inner--text">{indicator}</span>
+              </Button>
+            )
+          })
+    }
+
+
+
 }
 
 const mapStateToProps = (state) => ({
@@ -88,7 +145,7 @@ const mapStateToProps = (state) => ({
     layout: state.charts.layout,
     theme: state.charts.theme,
     interval: state.charts.interval,
-    indicators: state.charts.indicators
+    indicatorlist: state.charts.indicatorlist
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -98,7 +155,8 @@ const mapDispatchToProps = (dispatch) => ({
     selectTheme: (theme) => dispatch(actions.selectTheme(theme)),
     selectInterval: (interval) => dispatch(actions.selectInterval(interval)),
     selectIndicator: (indicator) => dispatch(actions.selectIndicator(indicator)),
-    deleteChart: (chart) => dispatch(actions.deleteChart(chart))
+    deleteChart: (chart) => dispatch(actions.deleteChart(chart)),
+    deleteIndicator: (indicator) => dispatch(actions.deleteIndicator(indicator))
 })
 
 type HeaderProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>

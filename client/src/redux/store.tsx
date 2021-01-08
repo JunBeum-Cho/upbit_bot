@@ -7,7 +7,7 @@ const initialListState = {
     layout: "33",
     theme: "Light",
     interval: "5",
-    indicators: [
+    indicatorlist: [
         "LinearRegression@tv-basicstudies",
         "RSI@tv-basicstudies",
         "MASimple@tv-basicstudies"
@@ -37,7 +37,11 @@ function charts(state = initialListState, action) {
         case "SELECT_INTERVAL":
             return {...state, interval: action.value}
         case "SELECT_INDICATOR":
-            return {...state, indicator: action.value}
+            let indicatorlist = [...state.indicatorlist, action.value]
+            return {...state, indicatorlist: indicatorlist}
+        case "DELETE_INDICATOR":
+            let filtered_indicatorlist = [...state.indicatorlist].filter(indicator => indicator !== action.value)
+            return {...state, indicatorlist: filtered_indicatorlist}
         case "ADD_CHART":
             const marketname = `${action.value.toUpperCase()}:${action.value2.toUpperCase()}`
             let chartlist = [...state.chartlist, marketname]

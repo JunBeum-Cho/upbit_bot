@@ -54,3 +54,10 @@ export function deleteChart(marketname: string) {
     value: marketname
   }
 }
+
+export function deleteIndicator(indicator: string) {
+  return {
+    type: "DELETE_INDICATOR",
+    value: indicator
+  }
+}

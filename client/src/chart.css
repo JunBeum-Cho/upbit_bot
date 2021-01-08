@@ -6,10 +6,24 @@
   margin: 0 auto 0 auto;
 }
 
-.nav_marketlist {
+.nav_radioBtn{
   display: inline-block;
-  margin: 0 0 0 40px;
-  vertical-align: top;
+  max-width: 10%;
+  vertical-align: text-bottom;
+}
+
+.nav_list {
+  display: inline-block;
+  padding: 0 0 0 40px;
+  max-width: 90%;
+}
+
+.nav_marketlist {
+  display: block;
+}
+
+.nav_indicatorlist {
+  display: block;
 }
 
 .chart_outerdiv {
@@ -22,7 +36,7 @@
 }
 
 .dropdown {
-  margin-left: 40px;
+  margin: 20px 20px 10px 0;
 }
 
 .chart {
