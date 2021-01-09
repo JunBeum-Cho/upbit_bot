@@ -18,11 +18,6 @@ import * as actions from "../redux/actions"
 import "../chart.css";
 
 class Header extends React.Component<HeaderProps> {
-  toggleModal = state => {
-    this.setState({
-      [state]: !this.state[state]
-    });
-  };
   state = {
     modalopened: false
   }
@@ -30,7 +25,7 @@ class Header extends React.Component<HeaderProps> {
   render() {
     return(
     <div>
-      {this.renderLoginBtn()}
+      {this.renderLogoandLoginBtn()}
       <div className="nav_outerdiv">
           <div className='nav_radioBtn'>
               {this.renderRadioBtn()}
@@ -50,10 +45,10 @@ class Header extends React.Component<HeaderProps> {
     )
   }
 
-  renderLoginBtn() {
+  renderLogoandLoginBtn() {
     return (
     <>
-
+    
     {this.renderLoginmodal()}
       <Button 
         className="btn-icon btn-3" 

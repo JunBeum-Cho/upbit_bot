@@ -25,10 +25,11 @@ class AddChart extends React.Component<AddChartProps> {
   };
 
   render() {
-    const width = this.props.layout === "22" ? "49vw" : "32vw";
+    const width = this.props.layout === "22" ? "48.5vw" : "32vw";
+    // const height = this.props.layout === "12" ? "99vw" : "49vw";
     return this.state.editing 
     ? (
-      <div className="chart" style={{ width: width, height: "49vh" }}>
+      <div className="chart" style={{ width: width, height: "48.5vw" }}>
         <div className="addchart">
           <div style={{ display: "table-cell", verticalAlign: "middle", textAlign: "center", }}>
             {this.renderRadiobtn()}

@@ -27,6 +27,7 @@ class Chart extends React.Component<ChartProps> {
   render() {
     const { chartlist, layout, theme, interval, indicatorlist } = this.props
     const width = layout === "22" ? "48.5vw" : "32vw";
+    
     return (
       chartlist.map((marketname: string) => {
         return  (
