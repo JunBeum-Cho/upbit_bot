@@ -16,7 +16,6 @@ import { indicator_list } from "../info_list"
 import Login from "./Login"
 import * as actions from "../redux/actions"
 import "../chart.css";
-
 class Header extends React.Component<HeaderProps> {
   state = {
     modalopened: false
@@ -47,14 +46,15 @@ class Header extends React.Component<HeaderProps> {
 
   renderLogoandLoginBtn() {
     return (
-    <>
-    
+    <div style={{margin:"20px auto 40px auto", textAlign: "center"}}>
+    <img src={require("../res/logo.svg")} width="80px" style={{verticalAlign: "center"}}/>
+    <text style={{color:"black", fontFamily: "NanumSquare-Bold", fontSize:"54pt", marginLeft: "10px"}}>전문.가</text>
     {this.renderLoginmodal()}
       <Button 
         className="btn-icon btn-3" 
         color="secondary" 
         type="button" 
-        style={{display: "block", margin: "40px 80px 0 auto", width: "120px", height: "50px"}}
+        style={{display: "inline-block", margin: "0 0 0 auto", width: "120px", height: "50px"}}
         onClick={() => this.setState({modalopened: !this.state.modalopened})}
       >
         <span className="btn-inner--icon">
@@ -62,7 +62,7 @@ class Header extends React.Component<HeaderProps> {
         </span>
         <span className="btn-inner--text">로그인</span>
       </Button>
-      </>
+      </div>
       )
   }
 

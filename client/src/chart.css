@@ -71,6 +71,17 @@
   cursor: pointer;
 }
 
+@font-face {
+  font-family: NanumSquare;
+  src: url('./res/NanumSquare.ttf'); 
+} 
 
-
+@font-face {
+  font-family: NanumSquare-Bold;
+  src: url('./res/NanumSquareBold.ttf'); 
+} 
+@font-face {
+  font-family: NanumSquare-ExtraBold;
+  src: url('./res/NanumSquareExtraBold.ttf'); 
+} 
 /* 검은 배경 131722*/
