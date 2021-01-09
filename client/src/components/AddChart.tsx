@@ -59,9 +59,11 @@ class AddChart extends React.Component<AddChartProps> {
         style={{ marginLeft: "10px", verticalAlign: "bottom", outline: "none" }}
         aria-label="add"
         onClick={() => {
-          this.props.addChart(this.state.exchange, this.state.coinpair)
-          this.setState({...this.state, editing: !this.state.editing, exchange: "binance"})
-        }}
+            if(this.state.coinpair !== "") {
+                this.props.addChart(this.state.exchange, this.state.coinpair)
+                this.setState({...this.state, editing: !this.state.editing, exchange: "binance", coinpair: ""})
+            }
+          }}
       >
         <AddBox />
       </IconButton>
