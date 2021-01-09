@@ -3,7 +3,7 @@ import "../App.css";
 import Tabs from "./Tabs";
 import Alerts from "./Alerts";
 import Axios from "axios";
-import { Button, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import { Button, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Modal } from "reactstrap";
 import TradingViewWidget from "react-tradingview-widget";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,29 +13,138 @@ import TextField from "@material-ui/core/TextField";
 import binance_json from "../binance_list.json";
 import { connect } from 'react-redux';
 import { indicator_list } from "../info_list"
+import Login from "./Login"
 import * as actions from "../redux/actions"
 import "../chart.css";
 
 class Header extends React.Component<HeaderProps> {
+  toggleModal = state => {
+    this.setState({
+      [state]: !this.state[state]
+    });
+  };
+  state = {
+    modalopened: false
+  }
+
   render() {
     return(
-    <div className="nav_outerdiv">
-        <div className='nav_radioBtn'>
-            {this.renderRadioBtn()}
-        </div>
-        <div className = "nav_list">
-            <div className='nav_marketlist'>
-            {this.renderMarketList()}
-            </div>
-            <div style={{width: "inherit", height: "20px", borderBottom: "1px solid #BDBDBD"}}/>
-            <div className='nav_indicatorlist'>
-            {this.renderDropdown()}
-            {this.renderIndicatorList()}
-            </div>
-        </div>
+    <div>
+      {this.renderLoginBtn()}
+      <div className="nav_outerdiv">
+          <div className='nav_radioBtn'>
+              {this.renderRadioBtn()}
+          </div>
+          <div className = "nav_list">
+              <div className='nav_marketlist'>
+              {this.renderMarketList()}
+              </div>
+              <div style={{width: "inherit", height: "20px", borderBottom: "1px solid #BDBDBD"}}/>
+              <div className='nav_indicatorlist'>
+              {this.renderDropdown()}
+              {this.renderIndicatorList()}
+              </div>
+          </div>
+      </div>
     </div>
     )
   }
+
+  renderLoginBtn() {
+    return (
+    <>
+
+    {this.renderLoginmodal()}
+      <Button 
+        className="btn-icon btn-3" 
+        color="secondary" 
+        type="button" 
+        style={{display: "block", margin: "40px 80px 0 auto", width: "120px", height: "50px"}}
+        onClick={() => this.setState({modalopened: !this.state.modalopened})}
+      >
+        <span className="btn-inner--icon">
+          <i className="ni ni-single-02" />
+        </span>
+        <span className="btn-inner--text">로그인</span>
+      </Button>
+      </>
+      )
+  }
+
+renderLoginmodal() {
+  return (
+    <>
+            <Modal
+              className="modal-dialog-centered"
+              isOpen={this.state.modalopened}
+              toggle={() => this.setState({modalopened: !this.state.modalopened})}
+            >
+              <div className="modal-header">
+                <h6 className="modal-title" id="modal-title-default">
+                  Type your modal title
+                </h6>
+                <button
+                  aria-label="Close"
+                  className="close"
+                  data-dismiss="modal"
+                  type="button"
+                  onClick={() => this.setState({modalopened: !this.state.modalopened})}
+                >
+                  <span aria-hidden={true}>×</span>
+                </button>
+              </div>
+
+              <div className="text-muted text-center mb-3">
+                        <small>Sign in with</small>
+                      </div>
+                      <div className="btn-wrapper text-center">
+                        <Button
+                          className="btn-neutral btn-icon"
+                          color="default"
+                          href="#pablo"
+                          onClick={e => e.preventDefault()}
+                        >
+                          <span className="btn-inner--icon mr-1">
+                            <img
+                              alt="..."
+                              src={require("../assets/img/icons/common/github.svg")}
+                            />
+                          </span>
+                          <span className="btn-inner--text">Github</span>
+                        </Button>
+                        <Button
+                          className="btn-neutral btn-icon ml-1"
+                          color="default"
+                          href="#pablo"
+                          onClick={e => e.preventDefault()}
+                        >
+                          <span className="btn-inner--icon mr-1">
+                            <img
+                              alt="..."
+                              src={require("../assets/img/icons/common/google.svg")}
+                            />
+                          </span>
+                          <span className="btn-inner--text">Google</span>
+                        </Button>
+                      </div>
+
+
+              
+              <div className="modal-footer">
+                <Button
+                  className="ml-auto"
+                  color="link"
+                  data-dismiss="modal"
+                  type="button"
+                  onClick={() => this.setState({modalopened: !this.state.modalopened})}
+                >
+                  Close
+                </Button>
+              </div>
+            </Modal>
+            </>
+  )
+}
 
   renderRadioBtn() {
     return (
