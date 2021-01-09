@@ -88,7 +88,6 @@ class AddChart extends React.Component<AddChartProps> {
     let marketlist: string[] = []
     if(this.state.exchange === "binance") {
       for (let coin of binance_list) {
-        console.log(coin.symbol)
         marketlist.push(coin.symbol)
       }
     } else {

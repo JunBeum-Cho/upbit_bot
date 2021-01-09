@@ -12,6 +12,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import TextField from "@material-ui/core/TextField";
 import binance_json from "../binance_list.json";
 import { connect } from 'react-redux';
+import { indicator_list } from "../info_list"
 import * as actions from "../redux/actions"
 import "../chart.css";
 
@@ -89,7 +90,6 @@ class Header extends React.Component<HeaderProps> {
   }
 
     renderDropdown() {
-    const list = ["ads", "sadf", "Asdfadsf"]
     return (
         <div className="dropdown">
         <UncontrolledDropdown size="md" group>
@@ -97,13 +97,14 @@ class Header extends React.Component<HeaderProps> {
             지표 추가
             </DropdownToggle>
             <DropdownMenu style={{maxHeight: "500px", overflowY: "scroll"}}>
-            {list.map((indicator) => {
+            {indicator_list.map((indicator) => {
                 return (
                     <DropdownItem
+                        key={indicator.name}
                         style={{ outline: "none" }}
                         onClick={(e) => this.props.selectIndicator(indicator)}
                         >
-                        {indicator}
+                        {indicator.name}
                     </DropdownItem>
                 )
             })}
@@ -117,7 +118,7 @@ class Header extends React.Component<HeaderProps> {
         return this.props.indicatorlist.map((indicator) => {
             return (
               <Button
-                key={indicator}
+                key={indicator.name}
                 className="btn-icon btn-3" 
                 size="sm" 
                 color="secondary" 
@@ -129,7 +130,7 @@ class Header extends React.Component<HeaderProps> {
                 <span className="btn-inner--icon">
                   <i className="fa fa-times" />
                 </span>
-                <span className="btn-inner--text">{indicator}</span>
+                <span className="btn-inner--text">{indicator.name}</span>
               </Button>
             )
           })

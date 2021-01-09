@@ -33,7 +33,7 @@ export function selectInterval(intervalValue: string) {
     }
 }
 
-export function selectIndicator(indicatorValue: string[]) {
+export function selectIndicator(indicatorValue: any) {
     return {
       type: "SELECT_INDICATOR",
       value: indicatorValue
@@ -48,16 +48,16 @@ export function addChart(exchange: string, coinpair: string) {
   }
 }
 
-export function deleteChart(marketname: string) {
+export function deleteChart(marketnameValue: string) {
   return {
     type: "DELETE_CHART",
-    value: marketname
+    value: marketnameValue
   }
 }
 
-export function deleteIndicator(indicator: string) {
+export function deleteIndicator(indicatorValue: any) {
   return {
     type: "DELETE_INDICATOR",
-    value: indicator
+    value: indicatorValue
   }
 }

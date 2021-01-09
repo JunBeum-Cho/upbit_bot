@@ -7,10 +7,9 @@ const initialListState = {
     layout: "33",
     theme: "Light",
     interval: "5",
-    indicatorlist: [
-        "LinearRegression@tv-basicstudies",
-        "RSI@tv-basicstudies",
-        "MASimple@tv-basicstudies"
+    indicatorlist: [    {
+        "name": "리니어 리그레션 (Linear Regression)" ,
+        "symbol": "LinearRegression@tv-basicstudies"}
     ]
 }
 
@@ -26,7 +25,6 @@ function login(state = initialLoginState, action) {
 } 
 
 function charts(state = initialListState, action) {
-    console.log(state)
     switch (action.type) {
         case undefined:
             return 
@@ -40,7 +38,7 @@ function charts(state = initialListState, action) {
             let indicatorlist = [...state.indicatorlist, action.value]
             return {...state, indicatorlist: indicatorlist}
         case "DELETE_INDICATOR":
-            let filtered_indicatorlist = [...state.indicatorlist].filter(indicator => indicator !== action.value)
+            let filtered_indicatorlist = [...state.indicatorlist].filter(indicator => indicator.name !== action.value.name)
             return {...state, indicatorlist: filtered_indicatorlist}
         case "ADD_CHART":
             const marketname = `${action.value.toUpperCase()}:${action.value2.toUpperCase()}`

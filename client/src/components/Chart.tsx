@@ -39,7 +39,7 @@ class Chart extends React.Component<ChartProps> {
             autosize
             hide_side_toolbar={false}
             hide_legend={true}
-            studies={indicatorlist}
+            studies={indicatorlist.map((indicator)=>{return indicator.symbol})}
           />
         </div>
       )
