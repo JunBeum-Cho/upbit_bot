@@ -1,5 +1,6 @@
 import { createStore, combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { indicator_list } from '../info_list'
 
 const initialLoginState = { auth: false }
 const initialListState = {
@@ -34,8 +35,14 @@ function charts(state = initialListState, action) {
             return {...state, theme: action.value}
         case "SELECT_INTERVAL":
             return {...state, interval: action.value}
-        case "SELECT_INDICATOR":
-            let indicatorlist = [...state.indicatorlist, action.value]
+        case "ADD_INDICATOR":
+            let contained = false
+            for (let indicator of state.indicatorlist) {
+                if (indicator.name === action.value.name) {
+                    contained = true
+                }
+            }
+            let indicatorlist = !contained ? [...state.indicatorlist, action.value] : state.indicatorlist
             return {...state, indicatorlist: indicatorlist}
         case "DELETE_INDICATOR":
             let filtered_indicatorlist = [...state.indicatorlist].filter(indicator => indicator.name !== action.value.name)

@@ -10,7 +10,6 @@ import IconButton from "@material-ui/core/IconButton";
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteIcon from "@material-ui/icons/Delete";
 import TextField from "@material-ui/core/TextField";
-import binance_json from "../binance_list.json";
 import { connect } from "react-redux";
 import * as actions from "../redux/actions";
 import "../chart.css";
@@ -61,7 +60,7 @@ class AddChart extends React.Component<AddChartProps> {
         aria-label="add"
         onClick={() => {
           this.props.addChart(this.state.exchange, this.state.coinpair)
-          this.setState({...this.state, editing: !this.state.editing})
+          this.setState({...this.state, editing: !this.state.editing, exchange: "binance"})
         }}
       >
         <AddBox />

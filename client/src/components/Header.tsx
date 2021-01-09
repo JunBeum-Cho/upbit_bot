@@ -27,6 +27,7 @@ class Header extends React.Component<HeaderProps> {
             <div className='nav_marketlist'>
             {this.renderMarketList()}
             </div>
+            <div style={{width: "inherit", height: "20px", borderBottom: "1px solid #BDBDBD"}}/>
             <div className='nav_indicatorlist'>
             {this.renderDropdown()}
             {this.renderIndicatorList()}
@@ -102,7 +103,7 @@ class Header extends React.Component<HeaderProps> {
                     <DropdownItem
                         key={indicator.name}
                         style={{ outline: "none" }}
-                        onClick={(e) => this.props.selectIndicator(indicator)}
+                        onClick={(e) => this.props.addIndicator(indicator)}
                         >
                         {indicator.name}
                     </DropdownItem>
@@ -155,7 +156,7 @@ const mapDispatchToProps = (dispatch) => ({
     selectLayout: (layout) => dispatch(actions.selectLayout(layout)),
     selectTheme: (theme) => dispatch(actions.selectTheme(theme)),
     selectInterval: (interval) => dispatch(actions.selectInterval(interval)),
-    selectIndicator: (indicator) => dispatch(actions.selectIndicator(indicator)),
+    addIndicator: (indicator) => dispatch(actions.addIndicator(indicator)),
     deleteChart: (chart) => dispatch(actions.deleteChart(chart)),
     deleteIndicator: (indicator) => dispatch(actions.deleteIndicator(indicator))
 })

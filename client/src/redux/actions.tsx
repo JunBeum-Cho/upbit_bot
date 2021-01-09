@@ -33,9 +33,9 @@ export function selectInterval(intervalValue: string) {
     }
 }
 
-export function selectIndicator(indicatorValue: any) {
+export function addIndicator(indicatorValue: any) {
     return {
-      type: "SELECT_INDICATOR",
+      type: "ADD_INDICATOR",
       value: indicatorValue
     }
 }
