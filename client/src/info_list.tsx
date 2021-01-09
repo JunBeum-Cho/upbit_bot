@@ -6439,65 +6439,188 @@ export const bithumb_list = [
 ]
 
 export const indicator_list = [
-    {"ADR": "studyADR@tv-basicstudies"},
-    {"MACD" : "MACD@tv-basicstudies"},
-    {"SMI 에르고딕 오실레이터" : "SMIErgodicOscillator@tv-basicstudies"},
-    {"SMI 에르고딕 인디케이터" : "SMIErgodicIndicator@tv-basicstudies"},
-    {"가격 거래량 트렌드 (Price Volume Trend)" : "PriceVolumeTrend@tv-basicstudies"},
-    {"가중 이동 평균 (Moving Average Weighted)" : "MAWeighted@tv-basicstudies"},
-    {"거래량" : "Volume@tv-basicstudies"},
-    {"거래량 가중이동평균" : "MAVolumeWeighted@tv-basicstudies"},
-    {"과거변동성 (Historical Volatility)" : "HV@tv-basicstudies"},
-    {"노우 슈어 씽 (Know Sure Thing)" : "KST@tv-basicstudies"},
-    {"누적​/​분포 (Accumulation​/​Distribution)" : "ACCD@tv-basicstudies"},
-    {"더블 EMA (Double EMA)" : "DoubleEMA@tv-basicstudies"},
-    {"돈치안 채널 (Donchian Channels)" : "DONCH@tv-basicstudies"},
-    {"디렉셔널 무브먼트 (Directional Movement)" : "DM@tv-basicstudies"},
-    {"디트렌디드 프라이스 오실레이터 (Detrended Price Oscillator)" : "DetrendedPriceOscillator@tv-basicstudies"},
-    {"레이트 오브 체인지 (Rate Of Change)" : "ROC@tv-basicstudies"},
-    {"렐러티브 비고르 인덱스 (Relative Vigor Index)" : "VigorIndex@tv-basicstudies"},
-    {"리니어 리그레션 (Linear Regression)" : "LinearRegression@tv-basicstudies"},
-    {"머니 플로우" : "MF@tv-basicstudies"},
-    {"모멘텀" : "MOM@tv-basicstudies"},
-    {"문 페이즈 (Moon Phases)" : "MoonPhases@tv-basicstudies"},
-    {"볼래틸리티 스탑" : "VSTOP@tv-basicstudies"},
-    {"볼린저 밴드 %B (Bollinger Bands %B)" : "BollingerBandsR@tv-basicstudies"},
-    {"볼린저 밴드 (Bollinger Bands)" : "BB@tv-basicstudies"},
-    {"볼린저밴드 너비 (Bollinger Bands Width)" : "BollingerBandsWidth@tv-basicstudies"},
-    {"브이왑" : "VWAP@tv-basicstudies"},
-    {"상대강도지수 (Relative Strength Index)" : "RSI@tv-basicstudies"},
-    {"상대변동성지수 (Relative Volatility Index)" : "VolatilityIndex@tv-basicstudies"},
-    {"샹드 모멘텀 오실레이터" : "chandeMO@tv-basicstudies"},
-    {"스토캐스틱" : "Stochastic@tv-basicstudies"},
-    {"스토캐스틱 RSI" : "StochasticRSI@tv-basicstudies"},
-    {"아룬 (Aroon)" : "AROON@tv-basicstudies"},
-    {"얼티미트 오실레이터" : "UltimateOsc@tv-basicstudies"},
-    {"엔빌로프 (Envelope)" : "ENV@tv-basicstudies"},
-    {"엘더즈 포스 인덱스 (Elder's Force Index)" : "EFI@tv-basicstudies"},
-    {"오썸 오실레이터" : "AwesomeOscillator@tv-basicstudies"},
-    {"온밸런스볼륨 (On Balance Volume)" : "OBV@tv-basicstudies"},
-    {"윌리엄스 %R" : "WilliamR@tv-basicstudies"},
-    {"윌리엄스 앨리게이터" : "WilliamsAlligator@tv-basicstudies"},
-    {"윌리엄스 프랙탈 (Williams Fractal)" : "WilliamsFractal@tv-basicstudies"},
-    {"이동 평균(Moving Average)" : "MASimple@tv-basicstudies"},
-    {"이즈 오브 무브먼트 (Ease Of Movement)" : "EaseOfMovement@tv-basicstudies"},
-    {"일목 구름 (Ichimoku Cloud)" : "IchimokuCloud@tv-basicstudies"},
-    {"지그재그" : "ZigZag@tv-basicstudies"},
-    {"지수 이동 평균 (Moving Average Exponential)" : "MAExp@tv-basicstudies"},
-    {"차피니스 인덱스 (Choppiness Index)" : "ChoppinessIndex@tv-basicstudies"},
-    {"체이킨 머니 플로우" : "CMF@tv-basicstudies"},
-    {"체이킨 오실레이터 (Chaikin Oscillator)" : "ChaikinOscillator@tv-basicstudies"},
-    {"커모디티 채널 인덱스 (Commodity Channel Index)" : "CCI@tv-basicstudies"},
-    {"켈트너 채널 (Keltner Channels)" : "KLTNR@tv-basicstudies"},
-    {"코너즈RSI (ConnorsRSI)" : "CRSI@tv-basicstudies"},
-    {"코릴레이션 코에피션트 (Correlation Coefficient)" : "CorrelationCoefficient@tv-basicstudies"},
-    {"트리플 EMA (Triple EMA)" : "TripleEMA@tv-basicstudies"},
-    {"트릭스" : "Trix@tv-basicstudies"},
-    {"파라볼릭 SAR" : "PSAR@tv-basicstudies"},
-    {"평균 트루레인지" : "ATR@tv-basicstudies"},
-    {"프라이스 오실레이터 (Price Oscillator)" : "PriceOsc@tv-basicstudies"},
-    {"피봇 포인트 스탠다드 (Pivot Points Standard)" : "PivotPointsStandard@tv-basicstudies"},
-    {"피봇 포인트 하이 로우 (Pivot Points High Low)" : "PivotPointsHighLow@tv-basicstudies"},
-    {"피셔 트랜스폼 (Fisher Transform)" : "FisherTransform@tv-basicstudies"},
-    {"헐 무빙 애버리지 (Hull Moving Average)" : "hullMA@tv-basicstudies"}
+    {
+      "name": "ADR",
+      "symbol": "studyADR@tv-basicstudies"
+    },
+    {
+      "name": "MACD" ,
+      "symbol": "MACD@tv-basicstudies"},
+    {
+      "name": "SMI 에르고딕 오실레이터" ,
+      "symbol": "SMIErgodicOscillator@tv-basicstudies"},
+    {
+      "name": "SMI 에르고딕 인디케이터" ,
+      "symbol": "SMIErgodicIndicator@tv-basicstudies"},
+    {
+      "name": "가격 거래량 트렌드 (Price Volume Trend)" ,
+      "symbol": "PriceVolumeTrend@tv-basicstudies"},
+    {
+      "name": "가중 이동 평균 (Moving Average Weighted)" ,
+      "symbol": "MAWeighted@tv-basicstudies"},
+    {
+      "name": "거래량" ,
+      "symbol": "Volume@tv-basicstudies"},
+    {
+      "name": "거래량 가중이동평균" ,
+      "symbol": "MAVolumeWeighted@tv-basicstudies"},
+    {
+      "name": "과거변동성 (Historical Volatility)" ,
+      "symbol": "HV@tv-basicstudies"},
+    {
+      "name": "노우 슈어 씽 (Know Sure Thing)" ,
+      "symbol": "KST@tv-basicstudies"},
+    {
+      "name": "누적​/​분포 (Accumulation​/​Distribution)" ,
+      "symbol": "ACCD@tv-basicstudies"},
+    {
+      "name": "더블 EMA (Double EMA)" ,
+      "symbol": "DoubleEMA@tv-basicstudies"},
+    {
+      "name": "돈치안 채널 (Donchian Channels)" ,
+      "symbol": "DONCH@tv-basicstudies"},
+    {
+      "name": "디렉셔널 무브먼트 (Directional Movement)" ,
+      "symbol": "DM@tv-basicstudies"},
+    {
+      "name": "디트렌디드 프라이스 오실레이터 (Detrended Price Oscillator)" ,
+      "symbol": "DetrendedPriceOscillator@tv-basicstudies"},
+    {
+      "name": "레이트 오브 체인지 (Rate Of Change)" ,
+      "symbol": "ROC@tv-basicstudies"},
+    {
+      "name": "렐러티브 비고르 인덱스 (Relative Vigor Index)" ,
+      "symbol": "VigorIndex@tv-basicstudies"},
+    {
+      "name": "리니어 리그레션 (Linear Regression)" ,
+      "symbol": "LinearRegression@tv-basicstudies"},
+    {
+      "name": "머니 플로우" ,
+      "symbol": "MF@tv-basicstudies"},
+    {
+      "name": "모멘텀" ,
+      "symbol": "MOM@tv-basicstudies"},
+    {
+      "name": "문 페이즈 (Moon Phases)" ,
+      "symbol": "MoonPhases@tv-basicstudies"},
+    {
+      "name": "볼래틸리티 스탑" ,
+      "symbol": "VSTOP@tv-basicstudies"},
+    {
+      "name": "볼린저 밴드 %B (Bollinger Bands %B)" ,
+      "symbol": "BollingerBandsR@tv-basicstudies"},
+    {
+      "name": "볼린저 밴드 (Bollinger Bands)" ,
+      "symbol": "BB@tv-basicstudies"},
+    {
+      "name": "볼린저밴드 너비 (Bollinger Bands Width)" ,
+      "symbol": "BollingerBandsWidth@tv-basicstudies"},
+    {
+      "name": "브이왑" ,
+      "symbol": "VWAP@tv-basicstudies"},
+    {
+      "name": "상대강도지수 (Relative Strength Index)" ,
+      "symbol": "RSI@tv-basicstudies"},
+    {
+      "name": "상대변동성지수 (Relative Volatility Index)" ,
+      "symbol": "VolatilityIndex@tv-basicstudies"},
+    {
+      "name": "샹드 모멘텀 오실레이터" ,
+      "symbol": "chandeMO@tv-basicstudies"},
+    {
+      "name": "스토캐스틱" ,
+      "symbol": "Stochastic@tv-basicstudies"},
+    {
+      "name": "스토캐스틱 RSI" ,
+      "symbol": "StochasticRSI@tv-basicstudies"},
+    {
+      "name": "아룬 (Aroon)" ,
+      "symbol": "AROON@tv-basicstudies"},
+    {
+      "name": "얼티미트 오실레이터" ,
+      "symbol": "UltimateOsc@tv-basicstudies"},
+    {
+      "name": "엔빌로프 (Envelope)" ,
+      "symbol": "ENV@tv-basicstudies"},
+    {
+      "name": "엘더즈 포스 인덱스 (Elder's Force Index)" ,
+      "symbol": "EFI@tv-basicstudies"},
+    {
+      "name": "오썸 오실레이터" ,
+      "symbol": "AwesomeOscillator@tv-basicstudies"},
+    {
+      "name": "온밸런스볼륨 (On Balance Volume)" ,
+      "symbol": "OBV@tv-basicstudies"},
+    {
+      "name": "윌리엄스 %R" ,
+      "symbol": "WilliamR@tv-basicstudies"},
+    {
+      "name": "윌리엄스 앨리게이터" ,
+      "symbol": "WilliamsAlligator@tv-basicstudies"},
+    {
+      "name": "윌리엄스 프랙탈 (Williams Fractal)" ,
+      "symbol": "WilliamsFractal@tv-basicstudies"},
+    {
+      "name": "이동 평균(Moving Average)" ,
+      "symbol": "MASimple@tv-basicstudies"},
+    {
+      "name": "이즈 오브 무브먼트 (Ease Of Movement)" ,
+      "symbol": "EaseOfMovement@tv-basicstudies"},
+    {
+      "name": "일목 구름 (Ichimoku Cloud)" ,
+      "symbol": "IchimokuCloud@tv-basicstudies"},
+    {
+      "name": "지그재그" ,
+      "symbol": "ZigZag@tv-basicstudies"},
+    {
+      "name": "지수 이동 평균 (Moving Average Exponential)" ,
+      "symbol": "MAExp@tv-basicstudies"},
+    {
+      "name": "차피니스 인덱스 (Choppiness Index)" ,
+      "symbol": "ChoppinessIndex@tv-basicstudies"},
+    {
+      "name": "체이킨 머니 플로우" ,
+      "symbol": "CMF@tv-basicstudies"},
+    {
+      "name": "체이킨 오실레이터 (Chaikin Oscillator)" ,
+      "symbol": "ChaikinOscillator@tv-basicstudies"},
+    {
+      "name": "커모디티 채널 인덱스 (Commodity Channel Index)" ,
+      "symbol": "CCI@tv-basicstudies"},
+    {
+      "name": "켈트너 채널 (Keltner Channels)" ,
+      "symbol": "KLTNR@tv-basicstudies"},
+    {
+      "name": "코너즈RSI (ConnorsRSI)" ,
+      "symbol": "CRSI@tv-basicstudies"},
+    {
+      "name": "코릴레이션 코에피션트 (Correlation Coefficient)" ,
+      "symbol": "CorrelationCoefficient@tv-basicstudies"},
+    {
+      "name": "트리플 EMA (Triple EMA)" ,
+      "symbol": "TripleEMA@tv-basicstudies"},
+    {
+      "name": "트릭스" ,
+      "symbol": "Trix@tv-basicstudies"},
+    {
+      "name": "파라볼릭 SAR" ,
+      "symbol": "PSAR@tv-basicstudies"},
+    {
+      "name": "평균 트루레인지" ,
+      "symbol": "ATR@tv-basicstudies"},
+    {
+      "name": "프라이스 오실레이터 (Price Oscillator)" ,
+      "symbol": "PriceOsc@tv-basicstudies"},
+    {
+      "name": "피봇 포인트 스탠다드 (Pivot Points Standard)" ,
+      "symbol": "PivotPointsStandard@tv-basicstudies"},
+    {
+      "name": "피봇 포인트 하이 로우 (Pivot Points High Low)" ,
+      "symbol": "PivotPointsHighLow@tv-basicstudies"},
+    {
+      "name": "피셔 트랜스폼 (Fisher Transform)" ,
+      "symbol": "FisherTransform@tv-basicstudies"},
+    {
+      "name": "헐 무빙 애버리지 (Hull Moving Average)" ,
+      "symbol": "hullMA@tv-basicstudies"}
 ]
