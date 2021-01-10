@@ -29,7 +29,7 @@ let binance_indodax_list = []
 
 const compare_coinlist = ["BTC", "ETH", "XRP", "BCH", "XLM", "ADA", "LTC", "EOS", "TRX", "DOT", "XEM"]
 
-async function main() {
+export async function main() {
   binance_data = (await axios.get(binance)).data
   upbit_data = (await axios.get(upbit)).data
   btcturk_data = (await axios.get(btcturk)).data
@@ -60,20 +60,9 @@ async function main() {
     binance_indodax_list.push({"코인명": coin, "바이낸스 가격": binance_price, "INDODAX 가격": indodax_price, "프리미엄": indodax_pre})
 }
 
-    console.log("BINANCE BTCTURK")
-    console.log(binance_btcturk_list)
-    console.log("-----------------------------------------------")
-    console.log("BINANCE BITKUB")
-    console.log(binance_bitkub_list)
-    console.log("-----------------------------------------------")
-    console.log("BINANCE MXC")
-    console.log(binance_mxc_list)
-    console.log("-----------------------------------------------")
-    console.log("BINANCE DCX")
-    console.log(binance_dcx_list)
-    console.log("-----------------------------------------------")
-    console.log("BINANCE INDODAX")
-    console.log(binance_indodax_list)
+    return [
+        { "btcturk" : binance_btcturk_list }, { "bitkub" :binance_bitkub_list }, { "mxc" : binance_mxc_list }, { "dcx" : binance_dcx_list }, { "indodax" : binance_indodax_list }
+    ]
 }
 
 
@@ -143,5 +132,3 @@ async function get_indodax_price(coin: string) {
     }
     return 0
 }
-
-main()
