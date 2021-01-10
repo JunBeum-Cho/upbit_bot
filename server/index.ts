@@ -4,7 +4,7 @@ import Redis from "redis"
 import cp from "child_process"
 import cron from 'node-cron'
 import { stop_and_restart } from "./utils"
-
+import * as kimp from "./kimp"
 const redis_storage = Redis.createClient() // For mac rdb saved in /usr/local/var/db/redis
 
 // second minute hour day-of-month month day-of-week
@@ -28,6 +28,15 @@ redis_storage.set("status", "running")
 
 app.get("/", function(req, res) {
     res.sendFile("/index.html")
+})
+
+app.get("/bot", function(req, res) {
+  res.sendFile("/index.html")
+})
+
+app.get("/kimp", async function(req, res) {
+  let value = await kimp.main()
+  res.send(value)
 })
 
 app.get("/data", function(req, res) {
