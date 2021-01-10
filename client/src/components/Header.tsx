@@ -45,8 +45,40 @@ class Header extends React.Component<HeaderProps> {
 
   renderLogoandLoginBtn() {
     return (
-    <div style={{display: "flex", height: "150px", marginBottom: "40px", alignItems: "center", backgroundColor: "#fbfbfbb8", boxShadow: "6px 1px 6px 0px #dedede"}}>
-      <div style={{display: "inline-block", margin:"0px -110px 0px auto"}}>
+    <div style={{display: "flex", height: "180px", marginBottom: "40px", alignItems: "center", backgroundColor: "#fbfbfb8c", boxShadow: "6px 1px 3px 0px #dedede"}}>
+      <div className="donation" style={{marginLeft: "100px"}}>
+      <text style={{fontFamily:"NanumSquare-extrabold", fontSize:"12pt"}}>- 후원 -</text>
+        <div>
+          <img src={require("../res/btc.png")} width="18px" style={{marginRight: "10px"}}/>
+          <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>비트코인: 3Duwi ...</text>
+          <i className="ni ni-ungroup copyicon" onClick={()=>{
+            navigator.clipboard.writeText("3DuwiqqZXW9d7fyU7A7nLecEmxdkvjFp3C")}}
+          />
+        </div>
+        <div>
+          <img src={require("../res/eth.png")} width="18px" style={{marginRight: "10px"}}/>
+          <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>이더리움: 0x2dc ...</text>
+          <i className="ni ni-ungroup copyicon" onClick={()=>{
+            navigator.clipboard.writeText("0x2dc4cbed916b37b72539e80ac628befe9eb6ebdc")}}
+          />
+        </div>
+        <div>
+          <img src={require("../res/ltc.png")} width="18px" style={{marginRight: "10px"}}/>
+          <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>라이트코인: 33sHo ...</text>
+          <i className="ni ni-ungroup copyicon" onClick={()=>{
+            navigator.clipboard.writeText("33sHoDqECGck5xmHDf8toeDGrQgJ5rPWPn")}}
+          />
+        </div>
+
+        <div>
+          <img src={require("../res/ada.png")} width="18px" style={{marginRight: "10px"}}/>
+          <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>에이다: DdzFF ...</text>
+          <i className="ni ni-ungroup copyicon" onClick={()=>{
+            navigator.clipboard.writeText("DdzFFzCqrhspsqdEpxzpc6GVDY9VojbTx3devHPKg8HaPPS6wu84htN3chd6Atop6AHTN7v7dpogYZN5AsqSMG28FDD46EL7LjmR8RRy")}}
+          />
+        </div>
+      </div>
+      <div style={{display: "inline-block", margin:"0px auto 0px auto"}}>
         <img src={require("../res/logo.svg")} width="60px" style={{verticalAlign: "bottom", paddingBottom: "10px"}}/>
         <text style={{color:"black", fontFamily: "NanumSquare-Bold", fontSize:"42pt", marginLeft: "10px"}}>전문.가</text>
       </div>
@@ -55,7 +87,7 @@ class Header extends React.Component<HeaderProps> {
           className="btn-icon btn-3" 
           color="secondary" 
           type="button" 
-          style={{display: "inline-block", margin: "0px 60px 0px auto", width: "120px", height: "50px"}}
+          style={{display: "inline-block", margin: "0px 100px 0px 0px", width: "120px", height: "50px"}}
           onClick={() => this.setState({modalopened: !this.state.modalopened})}
         >
           <span className="btn-inner--icon">
@@ -76,8 +108,8 @@ renderLoginmodal() {
               toggle={() => this.setState({modalopened: !this.state.modalopened})}
             >
               <div className="modal-header">
-                <h6 className="modal-title" id="modal-title-default">
-                  Type your modal title
+                <h6 className="modal-title nanumbold" id="modal-title-default">
+                  로그인
                 </h6>
                 <button
                   aria-label="Close"
@@ -91,9 +123,10 @@ renderLoginmodal() {
               </div>
 
               <div className="text-muted text-center mb-3">
-                        <small>Sign in with</small>
+                        {/* <small>Sign in with</small> */}
+                        <p className="nanum"><br/><br/>차트 설정을 저장할 수 있는 로그인 서비스를 준비 중입니다.<br/></p>
                       </div>
-                      <div className="btn-wrapper text-center">
+                      {/* <div className="btn-wrapper text-center">
                         <Button
                           className="btn-neutral btn-icon"
                           color="default"
@@ -122,7 +155,7 @@ renderLoginmodal() {
                           </span>
                           <span className="btn-inner--text">Google</span>
                         </Button>
-                      </div>
+                      </div> */}
 
 
               
@@ -148,26 +181,44 @@ renderLoginmodal() {
         <div className="custom-control custom-radio mb-3">
           <input
             className="custom-control-input"
-            defaultChecked
-            id="layout33"
+            id="layout23"
             name="layout"
             type="radio"
-            onClick={() => {this.props.selectLayout("33")}}
+            onClick={() => {
+              this.props.selectLayout("3", "2")
+            }}
           />
-          <label className="custom-control-label" htmlFor="layout33">
-            3 X 3
+          <label className="custom-control-label" htmlFor="layout23">
+            2 X 3
           </label>
         </div>
         <div className="custom-control custom-radio mb-3">
           <input
             className="custom-control-input"
+            defaultChecked
             id="layout22"
             name="layout"
             type="radio"
-            onClick={() => {this.props.selectLayout("22")}}
+            onClick={() => {
+              this.props.selectLayout("2", "2")
+            }}
           />
           <label className="custom-control-label" htmlFor="layout22">
             2 X 2
+          </label>
+        </div>
+        <div className="custom-control custom-radio mb-3">
+          <input
+            className="custom-control-input"
+            id="layout12"
+            name="layout"
+            type="radio"
+            onClick={() => {
+              this.props.selectLayout("2", "1")
+            }}
+          />
+          <label className="custom-control-label" htmlFor="layout12">
+            1 X 2
           </label>
         </div>
       </>
@@ -258,7 +309,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     login: () => dispatch(actions.login()),
     logout: () => dispatch(actions.logout()),
-    selectLayout: (layout) => dispatch(actions.selectLayout(layout)),
+    selectLayout: (layoutWidth, layoutHeight) => dispatch(actions.selectLayout(layoutWidth, layoutHeight)),
     selectTheme: (theme) => dispatch(actions.selectTheme(theme)),
     selectInterval: (interval) => dispatch(actions.selectInterval(interval)),
     addIndicator: (indicator) => dispatch(actions.addIndicator(indicator)),

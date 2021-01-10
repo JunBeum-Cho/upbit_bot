@@ -24,13 +24,14 @@ import {binance_list, upbit_list} from "../info_list"
 
 class Chart extends React.Component<ChartProps> {
   render() {
-    const { chartlist, layout, theme, interval, indicatorlist } = this.props
-    const width = layout === "22" ? "48.5vw" : "32vw";
+    const { chartlist, layout_width, layout_height, theme, interval, indicatorlist } = this.props
+    const width = layout_width === "2" ? "48.5vw" : "32vw";
+    const height = layout_height === "2" ? "48.5vh" : "99vh";
     
     return (
       chartlist.map((marketname: string) => {
         return  (
-          <div key={marketname} className="chart" style={{ width: width, height: "48.5vh" }}>
+          <div key={marketname} className="chart" style={{ width: width, height: height }}>
           <TradingViewWidget
             symbol={marketname}
             theme={theme}
@@ -51,7 +52,8 @@ class Chart extends React.Component<ChartProps> {
 const mapStateToProps = (state) => ({
   auth: state.login.auth,
   chartlist: state.charts.chartlist,
-  layout: state.charts.layout,
+  layout_width: state.charts.layout_width,
+  layout_height: state.charts.layout_height,
   theme: state.charts.theme,
   interval: state.charts.interval,
   indicatorlist: state.charts.indicatorlist,

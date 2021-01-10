@@ -25,11 +25,11 @@ class AddChart extends React.Component<AddChartProps> {
   };
 
   render() {
-    const width = this.props.layout === "22" ? "48.5vw" : "32vw";
-    // const height = this.props.layout === "12" ? "99vw" : "49vw";
+    const width = this.props.layout_width === "2" ? "48.5vw" : "32vw";
+    const height = this.props.layout_height === "2" ? "48.5vh" : "99vh";
     return this.state.editing 
     ? (
-      <div className="chart" style={{ width: width, height: "48.5vh" }}>
+      <div className="chart" style={{ width: width, height: height }}>
         <div className="addchart">
           <div style={{ display: "table-cell", verticalAlign: "middle", textAlign: "center", }}>
             {this.renderRadiobtn()}
@@ -43,7 +43,7 @@ class AddChart extends React.Component<AddChartProps> {
       </div>
       ) 
     : (
-      <div className="chart" style={{ width: width, height: "48.5vh" }}>
+      <div className="chart" style={{ width: width, height: height }}>
         <div className="addchart editing"
           onClick={() => {
             this.setState({ editing: !this.state.editing });
@@ -181,6 +181,8 @@ class AddChart extends React.Component<AddChartProps> {
 const mapStateToProps = (state) => ({
   auth: state.login.auth,
   layout: state.charts.layout,
+  layout_width: state.charts.layout_width,
+  layout_height: state.charts.layout_height
 })
 
 const mapDispatchToProps = (dispatch) => ({

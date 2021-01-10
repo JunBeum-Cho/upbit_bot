@@ -5,12 +5,16 @@ import { indicator_list } from '../info_list'
 const initialLoginState = { auth: false }
 const initialListState = {
     chartlist: ["BINANCE:BTCUSDT"],
-    layout: "33",
+    layout: "2",
+    layout_width: "2",
+    layout_height: "2",
     theme: "Light",
     interval: "5",
-    indicatorlist: [    {
-        "name": "리니어 리그레션 (Linear Regression)" ,
-        "symbol": "LinearRegression@tv-basicstudies"}
+    indicatorlist: [        
+        {
+            "name": "상대강도지수 (Relative Strength Index)" ,
+            "symbol": "RSI@tv-basicstudies"
+        }
     ]
 }
 
@@ -30,7 +34,7 @@ function charts(state = initialListState, action) {
         case undefined:
             return 
         case "SELECT_LAYOUT":
-            return {...state, layout: action.value}
+            return {...state, layout_width: action.width, layout_height: action.height}
         case "SELECT_THEME":
             return {...state, theme: action.value}
         case "SELECT_INTERVAL":

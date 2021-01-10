@@ -12,10 +12,11 @@ export function logout() {
     }
 }
 
-export function selectLayout(layoutValue: string) {
+export function selectLayout(layoutWidthValue: string, layoutHeightValue: string) {
     return {
       type: "SELECT_LAYOUT",
-      value: layoutValue
+      width: layoutWidthValue,
+      height: layoutHeightValue
     }
 }
 
