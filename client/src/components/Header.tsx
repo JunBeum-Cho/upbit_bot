@@ -10,7 +10,6 @@ import IconButton from "@material-ui/core/IconButton";
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteIcon from "@material-ui/icons/Delete";
 import TextField from "@material-ui/core/TextField";
-import binance_json from "../binance_list.json";
 import { connect } from 'react-redux';
 import { indicator_list } from "../info_list"
 import Login from "./Login"
@@ -47,21 +46,23 @@ class Header extends React.Component<HeaderProps> {
   renderLogoandLoginBtn() {
     return (
     <div style={{margin:"20px auto 40px auto", textAlign: "center"}}>
-    <img src={require("../res/logo.svg")} width="80px" style={{verticalAlign: "center"}}/>
-    <text style={{color:"black", fontFamily: "NanumSquare-Bold", fontSize:"54pt", marginLeft: "10px"}}>전문.가</text>
-    {this.renderLoginmodal()}
-      <Button 
-        className="btn-icon btn-3" 
-        color="secondary" 
-        type="button" 
-        style={{display: "inline-block", margin: "0 0 0 auto", width: "120px", height: "50px"}}
-        onClick={() => this.setState({modalopened: !this.state.modalopened})}
-      >
-        <span className="btn-inner--icon">
-          <i className="ni ni-single-02" />
-        </span>
-        <span className="btn-inner--text">로그인</span>
-      </Button>
+      <div style={{display: "inline-block"}}>
+        <img src={require("../res/logo.svg")} width="60px" style={{verticalAlign: "bottom", paddingBottom: "10px"}}/>
+        <text style={{color:"black", fontFamily: "NanumSquare-Bold", fontSize:"42pt", marginLeft: "10px"}}>전문.가</text>
+      </div>
+      {this.renderLoginmodal()}
+        <Button 
+          className="btn-icon btn-3" 
+          color="secondary" 
+          type="button" 
+          style={{display: "inline-block", margin: "0 auto 0 auto", width: "120px", height: "50px"}}
+          onClick={() => this.setState({modalopened: !this.state.modalopened})}
+        >
+          <span className="btn-inner--icon">
+            <i className="ni ni-single-02" />
+          </span>
+          <span className="btn-inner--text">로그인</span>
+        </Button>
       </div>
       )
   }

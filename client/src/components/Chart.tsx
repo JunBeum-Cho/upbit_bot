@@ -17,7 +17,6 @@ import IconButton from "@material-ui/core/IconButton";
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteIcon from "@material-ui/icons/Delete";
 import TextField from "@material-ui/core/TextField";
-import binance_json from "../binance_list.json";
 import { connect } from "react-redux";
 import "../chart.css";
 import {binance_list, upbit_list} from "../info_list"
@@ -39,7 +38,7 @@ class Chart extends React.Component<ChartProps> {
             locale="kr"
             autosize
             hide_side_toolbar={false}
-            hide_legend={true}
+            hide_legend={false}
             studies={indicatorlist.map((indicator)=>{return indicator.symbol})}
           />
         </div>
