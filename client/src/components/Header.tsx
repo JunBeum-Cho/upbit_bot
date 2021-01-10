@@ -45,8 +45,8 @@ class Header extends React.Component<HeaderProps> {
 
   renderLogoandLoginBtn() {
     return (
-    <div style={{margin:"20px auto 40px auto", textAlign: "center"}}>
-      <div style={{display: "inline-block"}}>
+    <div style={{display: "flex", height: "150px", marginBottom: "40px", alignItems: "center", backgroundColor: "#ffffff", boxShadow: "6px 1px 6px 0px #dedede"}}>
+      <div style={{display: "inline-block", margin:"0px -110px 0px auto"}}>
         <img src={require("../res/logo.svg")} width="60px" style={{verticalAlign: "bottom", paddingBottom: "10px"}}/>
         <text style={{color:"black", fontFamily: "NanumSquare-Bold", fontSize:"42pt", marginLeft: "10px"}}>전문.가</text>
       </div>
@@ -55,7 +55,7 @@ class Header extends React.Component<HeaderProps> {
           className="btn-icon btn-3" 
           color="secondary" 
           type="button" 
-          style={{display: "inline-block", margin: "0 auto 0 auto", width: "120px", height: "50px"}}
+          style={{display: "inline-block", margin: "0px 60px 0px auto", width: "120px", height: "50px"}}
           onClick={() => this.setState({modalopened: !this.state.modalopened})}
         >
           <span className="btn-inner--icon">
