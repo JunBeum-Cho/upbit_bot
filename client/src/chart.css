@@ -71,6 +71,15 @@
   cursor: pointer;
 }
 
+.indexfooter{
+  background-color: #fbfbfbb8;
+  margin: 100px 0px 0px 0px;
+  padding: 1.5rem 0;
+  color: #8898aa;
+  letter-spacing: 0;
+  font-size: 0.875rem;
+}
+
 @font-face {
   font-family: NanumSquare;
   src: url('./res/NanumSquare.ttf'); 

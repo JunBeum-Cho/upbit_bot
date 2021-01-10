@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer"
 import Chart from "./components/Chart";
 import AddChart from "./components/AddChart";
 import "./chart.css";
@@ -18,6 +19,7 @@ class IndexChart extends React.Component {
           <Chart/>
           <AddChart />
         </div>
+        <Footer />
       </div>
     )
   }

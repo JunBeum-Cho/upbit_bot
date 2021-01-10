@@ -30,7 +30,7 @@ class Chart extends React.Component<ChartProps> {
     return (
       chartlist.map((marketname: string) => {
         return  (
-          <div key={marketname} className="chart" style={{ width: width, height: "49vh" }}>
+          <div key={marketname} className="chart" style={{ width: width, height: "48.5vh" }}>
           <TradingViewWidget
             symbol={marketname}
             theme={theme}
