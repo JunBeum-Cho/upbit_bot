@@ -19,6 +19,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import "../chart.css";
+import { Tradingview_Widget } from "./TradingviewWidget"
 import {binance_list, upbit_list} from "../info_list"
 
 
@@ -30,24 +31,14 @@ class Chart extends React.Component<ChartProps> {
     
     return (
       chartlist.map((marketname: string) => {
-        return  (
-          <div key={marketname} className="chart" style={{ width: width, height: height }}>
-          <TradingViewWidget
-            symbol={marketname}
-            theme={theme}
-            interval={interval}
-            locale="kr"
-            autosize
-            hide_side_toolbar={false}
-            hide_legend={false}
-            studies={indicatorlist.map((indicator)=>{return indicator.symbol})}
-          />
-        </div>
-      )
+        return <Tradingview_Widget marketname={marketname} width={width} height={height} theme={theme} interval={interval} 
+        indicatorlist= {indicatorlist} />
       })
     )
   }
 }
+
+
 
 const mapStateToProps = (state) => ({
   auth: state.login.auth,
