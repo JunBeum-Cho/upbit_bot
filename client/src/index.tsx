@@ -15,7 +15,7 @@ ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/bot" component={App}/>
+          <Route path="/bot" component={App}/>
           <Route path="/" component={IndexChart}/>
         </Switch>
       </BrowserRouter>
