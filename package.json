@@ -9,5 +9,8 @@
     "dev": "cd server && npx ts-node index.ts"
   },
   "author": "JunBeum-Cho",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "react-json-view": "^1.19.1"
+  }
 }
