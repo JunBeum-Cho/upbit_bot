@@ -13,8 +13,10 @@ import TextField from "@material-ui/core/TextField";
 import { connect } from 'react-redux';
 import { indicator_list } from "../info_list"
 import Login from "./Login"
+import {CopyToClipboard} from "react-copy-to-clipboard"
 import * as actions from "../redux/actions"
 import "../chart.css";
+
 class Header extends React.Component<HeaderProps> {
   state = {
     modalopened: false
@@ -51,36 +53,39 @@ class Header extends React.Component<HeaderProps> {
         <div>
           <img src={require("../res/btc.png")} width="18px" style={{marginRight: "10px"}}/>
           <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>비트코인: 3Duwi ...</text>
-          <i className="ni ni-ungroup copyicon" onClick={()=>{
-            navigator.clipboard.writeText("3DuwiqqZXW9d7fyU7A7nLecEmxdkvjFp3C")
-            alert("주소 복사 완료:\n3DuwiqqZXW9d7fyU7A7nLecEmxdkvjFp3C")
-          }}
-          />
+          <CopyToClipboard text={"3DuwiqqZXW9d7fyU7A7nLecEmxdkvjFp3C"}>
+            <i className="ni ni-ungroup copyicon" onClick={()=>{
+            alert("주소 복사 완료:\n3DuwiqqZXW9d7fyU7A7nLecEmxdkvjFp3C")}}
+            />
+          </CopyToClipboard>
         </div>
         <div>
           <img src={require("../res/eth.png")} width="18px" style={{marginRight: "10px"}}/>
           <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>이더리움: 0x2dc ...</text>
-          <i className="ni ni-ungroup copyicon" onClick={()=>{
-            navigator.clipboard.writeText("0x2dc4cbed916b37b72539e80ac628befe9eb6ebdc")
+            <CopyToClipboard text={"0x2dc4cbed916b37b72539e80ac628befe9eb6ebdc"}>
+            <i className="ni ni-ungroup copyicon" onClick={()=>{
             alert("주소 복사 완료:\n0x2dc4cbed916b37b72539e80ac628befe9eb6ebdc")}}
-          />
+            />
+            </CopyToClipboard>
         </div>
         <div>
           <img src={require("../res/ltc.png")} width="18px" style={{marginRight: "10px"}}/>
           <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>라이트코인: 33sHo ...</text>
-          <i className="ni ni-ungroup copyicon" onClick={()=>{
-            navigator.clipboard.writeText("33sHoDqECGck5xmHDf8toeDGrQgJ5rPWPn")
+          <CopyToClipboard text={"33sHoDqECGck5xmHDf8toeDGrQgJ5rPWPn"}>
+            <i className="ni ni-ungroup copyicon" onClick={()=>{
             alert("주소 복사 완료:\n33sHoDqECGck5xmHDf8toeDGrQgJ5rPWPn")}}
-          />
+            />
+          </CopyToClipboard>
         </div>
 
         <div>
           <img src={require("../res/ada.png")} width="18px" style={{marginRight: "10px"}}/>
           <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>에이다: DdzFF ...</text>
-          <i className="ni ni-ungroup copyicon" onClick={()=>{
-            navigator.clipboard.writeText("DdzFFzCqrhspsqdEpxzpc6GVDY9VojbTx3devHPKg8HaPPS6wu84htN3chd6Atop6AHTN7v7dpogYZN5AsqSMG28FDD46EL7LjmR8RRy")
+          <CopyToClipboard text={"DdzFFzCqrhspsqdEpxzpc6GVDY9VojbTx3devHPKg8HaPPS6wu84htN3chd6Atop6AHTN7v7dpogYZN5AsqSMG28FDD46EL7LjmR8RRy"}>
+            <i className="ni ni-ungroup copyicon" onClick={()=>{
             alert("주소 복사 완료:\nDdzFFzCqrhspsqdEpxzpc6GVDY9VojbTx3devHPKg8HaPPS6wu84htN3chd6Atop6AHTN7v7dpogYZN5AsqSMG28FDD46EL7LjmR8RRy")}}
-          />
+            />
+          </CopyToClipboard>
         </div>
       </div>
       <div style={{display: "inline-block", margin:"0px auto 0px auto"}}>
@@ -92,7 +97,7 @@ class Header extends React.Component<HeaderProps> {
           className="btn-icon btn-3" 
           color="secondary" 
           type="button" 
-          style={{display: "inline-block", margin: "0px 100px 0px 0px", width: "120px", height: "50px"}}
+          style={{display: "inline-block", margin: "0px 100px 0px 60px", width: "120px", height: "50px"}}
           onClick={() => this.setState({modalopened: !this.state.modalopened})}
         >
           <span className="btn-inner--icon">
