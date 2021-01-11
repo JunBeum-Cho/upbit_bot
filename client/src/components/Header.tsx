@@ -52,21 +52,25 @@ class Header extends React.Component<HeaderProps> {
           <img src={require("../res/btc.png")} width="18px" style={{marginRight: "10px"}}/>
           <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>비트코인: 3Duwi ...</text>
           <i className="ni ni-ungroup copyicon" onClick={()=>{
-            navigator.clipboard.writeText("3DuwiqqZXW9d7fyU7A7nLecEmxdkvjFp3C")}}
+            navigator.clipboard.writeText("3DuwiqqZXW9d7fyU7A7nLecEmxdkvjFp3C")
+            alert("주소 복사 완료:\n3DuwiqqZXW9d7fyU7A7nLecEmxdkvjFp3C")
+          }}
           />
         </div>
         <div>
           <img src={require("../res/eth.png")} width="18px" style={{marginRight: "10px"}}/>
           <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>이더리움: 0x2dc ...</text>
           <i className="ni ni-ungroup copyicon" onClick={()=>{
-            navigator.clipboard.writeText("0x2dc4cbed916b37b72539e80ac628befe9eb6ebdc")}}
+            navigator.clipboard.writeText("0x2dc4cbed916b37b72539e80ac628befe9eb6ebdc")
+            alert("주소 복사 완료:\n0x2dc4cbed916b37b72539e80ac628befe9eb6ebdc")}}
           />
         </div>
         <div>
           <img src={require("../res/ltc.png")} width="18px" style={{marginRight: "10px"}}/>
           <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>라이트코인: 33sHo ...</text>
           <i className="ni ni-ungroup copyicon" onClick={()=>{
-            navigator.clipboard.writeText("33sHoDqECGck5xmHDf8toeDGrQgJ5rPWPn")}}
+            navigator.clipboard.writeText("33sHoDqECGck5xmHDf8toeDGrQgJ5rPWPn")
+            alert("주소 복사 완료:\n33sHoDqECGck5xmHDf8toeDGrQgJ5rPWPn")}}
           />
         </div>
 
@@ -74,7 +78,8 @@ class Header extends React.Component<HeaderProps> {
           <img src={require("../res/ada.png")} width="18px" style={{marginRight: "10px"}}/>
           <text style={{fontFamily:"NanumSquare", fontSize:"11pt"}}>에이다: DdzFF ...</text>
           <i className="ni ni-ungroup copyicon" onClick={()=>{
-            navigator.clipboard.writeText("DdzFFzCqrhspsqdEpxzpc6GVDY9VojbTx3devHPKg8HaPPS6wu84htN3chd6Atop6AHTN7v7dpogYZN5AsqSMG28FDD46EL7LjmR8RRy")}}
+            navigator.clipboard.writeText("DdzFFzCqrhspsqdEpxzpc6GVDY9VojbTx3devHPKg8HaPPS6wu84htN3chd6Atop6AHTN7v7dpogYZN5AsqSMG28FDD46EL7LjmR8RRy")
+            alert("주소 복사 완료:\nDdzFFzCqrhspsqdEpxzpc6GVDY9VojbTx3devHPKg8HaPPS6wu84htN3chd6Atop6AHTN7v7dpogYZN5AsqSMG28FDD46EL7LjmR8RRy")}}
           />
         </div>
       </div>
