@@ -13,15 +13,15 @@ export const JsonViewer = () => {
     }
 
     useEffect(() => {
-        Axios.get("/kimp_data", {headers: {headers}}).then(
-            function (response) 
-            {   
-                console.log(response.data)
-                set_jsonlist(response.data)
-                set_loaded(true)
-            }
-        )
+        const data = getData()
+        set_jsonlist(data)
+        set_loaded(true)
     })
+
+    let getData = async() =>{
+        const data = await (await Axios.get(`/kimp_data?time=${new Date().toLocaleString}`)).data
+        return data
+    }
 
     return(
         loaded
