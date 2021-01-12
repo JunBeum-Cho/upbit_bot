@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "homepage": ".",
-  "proxy": "http://junbeumcho.ga",
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@material-ui/core": "^4.11.1",
     "@material-ui/icons": "^4.9.1",

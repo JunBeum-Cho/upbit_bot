@@ -7,7 +7,7 @@ export const JsonViewer = () => {
     const [ loaded, set_loaded ] = useState(false)
 
     useEffect(() => {
-        Axios.get("http://junbeumcho.ga/kimp").then(
+        Axios.get("/kimp_data").then(
             function (response) 
             {   
                 console.log(response.data)

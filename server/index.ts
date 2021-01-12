@@ -20,18 +20,25 @@ app.listen(8080, function () {
 });
 
 
-app.use(express.static(path.join(__dirname, "/../../client/build")))
+app.use(express.static(path.join(__dirname, "..", "client","build")))
 app.use(express.json())
 
 let upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
 redis_storage.set("status", "running")
 
 app.get("/", function(req, res) {
-    console.log(path.join(__dirname, "/../../client/build"))
     res.sendFile("/index.html")
 })
 
 app.get("/bot", function(req, res) {
+  res.sendFile("/index.html")
+})
+
+app.get("/kimp", function(req, res) {
+  res.sendFile("/index.html")
+})
+
+app.get("/bot_data", function(req, res) {
   let status, lasterror, history, messages
   try{
     redis_storage.get("status", (err, status_reply) => {
@@ -57,7 +64,7 @@ app.get("/bot", function(req, res) {
   }
 })
 
-app.get("/kimp", async function(req, res) {
+app.get("/kimp_data", async function(req, res) {
   let value = await kimp.main()
   res.send(value)
 })
