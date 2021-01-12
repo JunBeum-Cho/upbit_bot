@@ -7,7 +7,7 @@ export const JsonViewer = () => {
     const [ loaded, set_loaded ] = useState(false)
 
     useEffect(() => {
-        Axios.get("/kimp").then(
+        Axios.get("http://junbeumcho.ga/kimp").then(
             function (response) 
             {   
                 console.log(response.data)
@@ -31,7 +31,7 @@ export const JsonViewer = () => {
         : 
         <div style={{textAlign: "center", height:"99vh"}}>
             <img src={require("../res/loading.gif")}/>
-            <text style={{display:"block", fontSize: "18pt", fontFamily:"nanumsquare"}}>로딩 중 ...</text>
+            <h2 style={{display:"block", fontSize: "18pt", fontFamily:"nanumsquare"}}>로딩 중 ...</h2>
         </div>
         
         
