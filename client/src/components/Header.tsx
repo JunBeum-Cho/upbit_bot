@@ -34,7 +34,7 @@ class Header extends React.Component<HeaderProps> {
               <div className='nav_marketlist'>
               {this.renderMarketList()}
               </div>
-              <div style={{width: "inherit", height: "20px", borderBottom: "1px solid #BDBDBD"}}/>
+              <div style={{width: "inherit", height: "10px", borderBottom: "1px solid #BDBDBD"}}/>
               <div className='nav_indicatorlist'>
               {this.renderDropdown()}
               {this.renderIndicatorList()}
@@ -239,7 +239,7 @@ renderLoginmodal() {
       return (
         <Button
           key={marketname}
-          className="btn-icon btn-3" 
+          className="btn-icon btn-3 mb10px" 
           size="sm" 
           color="secondary" 
           type="button" 
@@ -286,7 +286,7 @@ renderLoginmodal() {
             return (
               <Button
                 key={indicator.name}
-                className="btn-icon btn-3" 
+                className="btn-icon btn-3 mb10px" 
                 size="sm" 
                 color="secondary" 
                 type="button" 

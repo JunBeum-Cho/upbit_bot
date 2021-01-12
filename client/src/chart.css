@@ -9,13 +9,14 @@
 .nav_radioBtn{
   display: inline-block;
   max-width: 10%;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .nav_list {
   display: inline-block;
   padding: 0 0 0 40px;
   max-width: 90%;
+  vertical-align: middle;
 }
 
 .nav_marketlist {
@@ -24,6 +25,10 @@
 
 .nav_indicatorlist {
   display: block;
+}
+
+.mb10px {
+  margin-bottom: 10px;
 }
 
 .chart_outerdiv {
