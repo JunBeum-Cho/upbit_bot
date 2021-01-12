@@ -5,9 +5,15 @@ import Axios from "axios"
 export const JsonViewer = () => {
     const [ jsonlist, set_jsonlist ] = useState({})
     const [ loaded, set_loaded ] = useState(false)
+    const headers = {
+        'Cache-Control': 'no-cache',
+        // 'Cache-Control': 'no-cache',
+        // 'Pragma': 'no-cache',
+        // 'Expires': '0',
+    }
 
     useEffect(() => {
-        Axios.get("/kimp_data").then(
+        Axios.get("/kimp_data", {headers: {headers}}).then(
             function (response) 
             {   
                 console.log(response.data)
