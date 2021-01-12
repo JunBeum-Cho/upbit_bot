@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    let req = await (await Axios.get("/data")).data
+    let req = await (await Axios.get("/bot")).data
     this.setState({
       status: req.status,
       history: req.history,
