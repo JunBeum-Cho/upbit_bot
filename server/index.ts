@@ -27,14 +27,17 @@ let upbit_process = cp.spawn('npx', ['ts-node','upbit.ts'], {stdio: 'inherit'})
 redis_storage.set("status", "running")
 
 app.get("/", function(req, res) {
+  console.log(path.resolve(__dirname, "..", "client","build"))
   res.sendFile(path.resolve(__dirname, "..", "client","build", "index.html"))
 })
 
 app.get("/bot", function(req, res) {
+  console.log(path.resolve(__dirname, "..", "client","build"))
   res.sendFile(path.resolve(__dirname, "..", "client","build", "index.html"))
 })
 
 app.get("/kimp", function(req, res) {
+  console.log(path.resolve(__dirname, "..", "client","build"))
   res.sendFile(path.resolve(__dirname, "..", "client","build", "index.html"))
 })
 
