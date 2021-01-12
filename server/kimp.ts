@@ -65,6 +65,15 @@ export async function main() {
     ]
 }
 
+const x = async() => {
+    let i = await main()
+    for(let q of i) {
+        console.log(q)
+    }
+
+}
+x()
+
 
 //BTCUSDT 형식
 async function get_binance_price(coinname: string) {

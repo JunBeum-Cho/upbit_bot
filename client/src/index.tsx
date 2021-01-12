@@ -16,8 +16,8 @@ ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
         <Switch>
-          <Route path="/bot" component={App}/>
-          <Route path="/kimp" component={JsonViewer}/>
+          <Route exact path="/bot" component={App}/>
+          <Route exact path="/kimp" component={JsonViewer}/>
           <Route path="/" component={IndexChart}/>
         </Switch>
       </BrowserRouter>
