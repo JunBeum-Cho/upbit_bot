@@ -9,7 +9,6 @@ import store from "./redux/store"
 import {Provider} from 'react-redux'
 import IndexChart from "./index_chart"
 import {BrowserRouter, Route, Switch} from "react-router-dom"
-import {JsonViewer} from "./components/JsonViewer"
 
 ReactDOM.render(
   <Provider store={store}>
@@ -17,7 +16,6 @@ ReactDOM.render(
       <BrowserRouter>
         <Switch>
           <Route exact path="/bot" component={App}/>
-          <Route exact path="/kimp" component={JsonViewer}/>
           <Route path="/" component={IndexChart}/>
         </Switch>
       </BrowserRouter>

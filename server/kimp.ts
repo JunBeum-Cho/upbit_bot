@@ -1,9 +1,9 @@
 import axios from "axios"
 
-const thbrate = 36.33;
+const thbrate = 31.03;
 const tryrate = 148.34;
 const usdtrate = 1091;
-const idrrate = 0.08
+const idrrate = 14300;
 
 const binance = "https://www.binance.com/api/v3/ticker/price"
 const upbit = "https://api.upbit.com/v1/ticker?markets=KRW-BTC,KRW-ETH,KRW-NEO,KRW-MTL,KRW-LTC,KRW-XRP,KRW-ETC,KRW-OMG,KRW-SNT,KRW-WAVES,KRW-XEM,KRW-QTUM,KRW-LSK,KRW-STEEM,KRW-XLM,KRW-ARDR,KRW-KMD,KRW-ARK,KRW-STORJ,KRW-GRS,KRW-REP,KRW-EMC2,KRW-ADA,KRW-SBD,KRW-POWR,KRW-BTG,KRW-ICX,KRW-EOS,KRW-TRX,KRW-SC,KRW-GTO,KRW-IGNIS,KRW-ONT,KRW-ZIL,KRW-POLY,KRW-ZRX,KRW-SRN,KRW-LOOM,KRW-BCH,KRW-ADX,KRW-BAT,KRW-IOST,KRW-DMT,KRW-RFR,KRW-CVC,KRW-IQ,KRW-IOTA,KRW-OST,KRW-MFT,KRW-ONG,KRW-GAS,KRW-UPP,KRW-ELF,KRW-KNC,KRW-BSV,KRW-THETA,KRW-EDR,KRW-QKC,KRW-BTT,KRW-MOC,KRW-ENJ,KRW-TFUEL,KRW-MANA,KRW-ANKR,KRW-NPXS,KRW-AERGO,KRW-ATOM,KRW-TT,KRW-CRE,KRW-SOLVE,KRW-MBL,KRW-TSHP,KRW-WAXP,KRW-HBAR,KRW-MED,KRW-MLK,KRW-STPT,KRW-ORBS,KRW-VET,KRW-CHZ,KRW-PXL,KRW-STMX,KRW-DKA,KRW-HIVE,KRW-KAVA,KRW-AHT,KRW-SPND,KRW-LINK,KRW-XTZ,KRW-BORA,KRW-JST,KRW-CRO,KRW-TON,KRW-SXP,KRW-LAMB,KRW-HUNT,KRW-MARO,KRW-PLA,KRW-DOT,KRW-SRM,KRW-MVL,KRW-PCI,KRW-STRAX,KRW-AQT,KRW-BCHA,KRW-GLM,KRW-QTCON,KRW-SSX,KRW-META,KRW-OBSR,KRW-FCT2,KRW-LBC,KRW-CBK";
@@ -39,13 +39,13 @@ export async function main() {
   indodax_data =  (await axios.get(indodax)).data
 
   for (let coin of compare_coinlist) {
-    const binance_price = await get_binance_price(coin)*usdtrate
-    const upbit_price = await get_upbit_price(coin)
-    const btcturk_price = await get_btcturk_price(coin)*tryrate
-    const bitkub_price = await get_bitkub_price(coin)*thbrate
-    const mxc_price = await get_mxc_price(coin)*usdtrate
-    const dcx_price = await get_dcx_price(coin)*usdtrate
-    const indodax_price = await get_indodax_price(coin)*idrrate
+    const binance_price = await get_binance_price(coin)
+    const upbit_price = await get_upbit_price(coin)/usdtrate
+    const btcturk_price = await get_btcturk_price(coin)
+    const bitkub_price = await get_bitkub_price(coin)/thbrate
+    const mxc_price = await get_mxc_price(coin)
+    const dcx_price = await get_dcx_price(coin)
+    const indodax_price = await get_indodax_price(coin)/idrrate
 
     const krwturk_pre = (btcturk_price/binance_price - 1) * 100
     const krwkub_pre = (bitkub_price/binance_price - 1) * 100
