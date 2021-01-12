@@ -1,13 +1,25 @@
 import ReactJson from 'react-json-view'
 import React, { useState, useEffect } from 'react';
-import axios from "axios"
+import Axios from "axios"
+
 export const JsonViewer = () => {
-    let jsonlist = {}
+    const [ jsonlist, set_jsonlist ] = useState({})
+    const [ loaded, set_loaded ] = useState(false)
+
     useEffect(() => {
-        jsonlist = axios.get("jeonmun.ga/kimp")        
+        Axios.get("/kimp").then(
+            function (response) 
+            {   
+                console.log(response.data)
+                set_jsonlist(response.data)
+                set_loaded(true)
+            }
+        )
     })
 
     return(
+        loaded
+        ? 
         <ReactJson 
             theme="railscasts"
             iconStyle="triangle"
@@ -16,5 +28,12 @@ export const JsonViewer = () => {
             collapsed={false}
             src={jsonlist} 
         />
+        : 
+        <div style={{textAlign: "center", height:"99vh"}}>
+            <img src={require("../res/loading.gif")}/>
+            <text style={{display:"block", fontSize: "18pt", fontFamily:"nanumsquare"}}>로딩 중 ...</text>
+        </div>
+        
+        
     )
 }
