@@ -88,7 +88,7 @@ async function get_upbit_price(coinname: string) {
 //BTCTRY 형식
 async function get_btcturk_price(coinname: string) {
     for(const coin of btcturk_data["data"]) {
-        if(coin.pair === `${coinname}TRY`) { 
+        if(coin.pair === `${coinname}USDT`) { 
             return coin.last
         }
     }
