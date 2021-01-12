@@ -36,9 +36,9 @@ app.get("/bot", function(req, res) {
   res.sendFile(path.resolve(__dirname, "..", "client","build", "index.html"))
 })
 
-app.get("/kimp", function(req, res) {
-  console.log(path.resolve(__dirname, "..", "client","build"))
-  res.sendFile(path.resolve(__dirname, "..", "client","build", "index.html"))
+app.get("/kimp", async function(req, res) {
+  let value = await kimp.main()
+  res.send(value)
 })
 
 app.get("/bot_data", function(req, res) {
@@ -65,11 +65,6 @@ app.get("/bot_data", function(req, res) {
   } catch (err) {
     res.send(`ERROR: ${err}`)
   }
-})
-
-app.get("/kimp_data", async function(req, res) {
-  let value = await kimp.main()
-  res.send(value)
 })
 
 app.get("/start",  function(req, res) {
