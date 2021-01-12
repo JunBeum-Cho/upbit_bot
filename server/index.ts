@@ -32,16 +32,6 @@ app.get("/", function(req, res) {
 })
 
 app.get("/bot", function(req, res) {
-  console.log(path.join(__dirname, "/../../client/build"))
-  res.sendFile("/index.html")
-})
-
-app.get("/kimp", async function(req, res) {
-  let value = await kimp.main()
-  res.send(value)
-})
-
-app.get("/data", function(req, res) {
   let status, lasterror, history, messages
   try{
     redis_storage.get("status", (err, status_reply) => {
@@ -67,6 +57,10 @@ app.get("/data", function(req, res) {
   }
 })
 
+app.get("/kimp", async function(req, res) {
+  let value = await kimp.main()
+  res.send(value)
+})
 
 app.get("/start",  function(req, res) {
   redis_storage.get("status", (err, reply) => {
