@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "port": "sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080",
-    "deploy": "pm2 stop index && yarn port && cd client && yarn && rm -rf build && yarn build serve -s && cd ../server && yarn && npx tsc && pm2 start dist/index.js",
-    "deploy:server": "pm2 stop index && yarn port && cd server && yarn && npx tsc && pm2 start dist/index.js",
+    "deploy": "pm2 stop index && yarn port && cd client && yarn && rm -rf build && yarn build serve -s && cd ../server && yarn && rm -rf dist && npx tsc && pm2 start dist/index.js",
+    "deploy:server": "pm2 stop index && yarn port && cd server && yarn && rm -rf dist && npx tsc && pm2 start dist/index.js",
     "dev": "cd server && npx ts-node index.ts"
   },
   "author": "JunBeum-Cho",
