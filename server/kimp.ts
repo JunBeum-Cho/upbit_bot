@@ -61,7 +61,7 @@ export async function main() {
 }
 
     return [
-        { "btcturk" : binance_btcturk_list }, { "bitkub" :binance_bitkub_list }, { "mxc" : binance_mxc_list }, { "dcx" : binance_dcx_list }, { "indodax" : binance_indodax_list }
+        { "time": new Date().toLocaleString(), "btcturk" : binance_btcturk_list }, { "bitkub" :binance_bitkub_list }, { "mxc" : binance_mxc_list }, { "dcx" : binance_dcx_list }, { "indodax" : binance_indodax_list }
     ]
 }
 
