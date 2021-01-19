@@ -50,8 +50,8 @@ class App extends React.Component {
   }
 
   startBtn_onClick = async() => {
-    let x = await Axios.get("http://junbeumcho.ga/start") //start로 바꾸기
-    let req = await (await Axios.get("http://junbeumcho.ga/data")).data
+    let x = await Axios.get("/start") //start로 바꾸기
+    let req = await (await Axios.get("/bot_data")).data
     this.setState({
       status: req.status,
       history: req.history,
@@ -61,8 +61,8 @@ class App extends React.Component {
   }
 
   stopBtn_onClick = async() => {
-    let x = await Axios.get("http://junbeumcho.ga/top") //stop으로 바꾸기
-    let req = await (await Axios.get("http://junbeumcho.ga/data")).data
+    let x = await Axios.get("/top") //stop으로 바꾸기
+    let req = await (await Axios.get("/bot_data")).data
     this.setState({
       status: req.status,
       history: req.history,
