@@ -1,5 +1,5 @@
 import Axios from "axios"
-const token= '1136799268:AAEAHJKs1ZWH_lqmRtRWdMDB_l0Vetq5a_E'
+const token= '1136799268:AAHS_VV_nSO3ZUdlPCSYU2-S3kk1AXOhLOg'
 const chatIdINT = '-1001202777995'
 // const bot = new TelegramBot(token)
 // const chatId = "@letsgetittt";
