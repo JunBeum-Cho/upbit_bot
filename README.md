@@ -3,7 +3,7 @@
 
 # Quant Trading
 
-* 해당 프로젝트는 개인적인 트레이딩 목적으로 만들어졌으며, 해당 프로젝트는 [JeonMun.Ga](https://jeonmun.ga/)에서 확인하실 수 있습니다.
+* 해당 프로젝트는 개인적인 트레이딩 목적으로 만들어졌으며, 해당 프로젝트는 [JeonMun.Ga](https://jeonmun.ga/)에서 확인하실 수 있습니다. 
 
 ## 기술 스택:
 1. **AWS**: EC2, Route54, Cloudfront
