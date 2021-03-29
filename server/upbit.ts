@@ -8,10 +8,8 @@ const majorcoin_boundary = 5
 const majorcoin_list = ["KRW-XRP", "KRW-ETH", "KRW-BSV", "KRW-ADA", "KRW-XLM", "KRW-BCH", "KRW-TRX"]
 const threeMinPumping_boundary = 7
 const fiveMinPumping_boundary = 10
-
-
-let history = {}
 const redis_storage = Redis.createClient()
+let history = {}
 
 process.on('SIGINT', () => {
   console.log("kill command received")

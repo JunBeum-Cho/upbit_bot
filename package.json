@@ -1,7 +1,7 @@
 {
-  "name": "upbit",
+  "name": "jeonmun.ga",
   "version": "1.0.0",
-  "description": "upbit 시세 조회 및 알림 봇",
+  "description": "전문가 시세 조회 및 알림 봇",
   "main": "index.js",
   "scripts": {
     "port": "sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080",

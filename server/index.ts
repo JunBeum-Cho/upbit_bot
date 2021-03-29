@@ -13,12 +13,9 @@ cron.schedule('0 1 9 * * *', function(){
 });
 
 let app = express();
-
-// sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
 app.listen(8080, function () {
   console.log("Express server has started on port 8080");
 });
-
 
 app.use(express.static(path.join(__dirname, "..", "client","build")))
 app.use(express.json())
